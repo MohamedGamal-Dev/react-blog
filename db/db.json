@@ -1,0 +1,36 @@
+{
+  "posts": [
+    {
+      "userId": "K1FEMviLrxg-JPUX6ZPW_",
+      "id": "oumCcmpnJGRkg1TNxVAI-",
+      "title": "Post Title Placeholder",
+      "body": "Post Content Placeholder"
+    },
+    {
+      "userId": "XCMxarCjaY785a8tvZvX-",
+      "id": "bjp5AuSuVz0zvCxUcgPHU",
+      "title": "Post Title Placeholder 2",
+      "body": "Post Content Placeholder 2"
+    },
+    {
+      "userId": "Ux2PTIDosL74ghnkbEurW",
+      "id": "5t62PwweFDwaXytZEQjyb",
+      "title": "Long Post Title Placeholder",
+      "body": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius commodi cupiditate aut voluptates. Repellendus vero ea dolor qui ratione illum consectetur soluta cum, voluptatibus debitis at natus nostrum perferendis ducimus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius commodi cupiditate aut voluptates. Repellendus vero ea dolor qui ratione illum consectetur soluta cum, voluptatibus debitis at natus nostrum perferendis ducimus."
+    }
+  ],
+  "users": [
+    {
+      "id": "Ux2PTIDosL74ghnkbEurW",
+      "name": "Alpha"
+    },
+    {
+      "id": "K1FEMviLrxg-JPUX6ZPW_",
+      "name": "Beta"
+    },
+    {
+      "id": "XCMxarCjaY785a8tvZvX-",
+      "name": "Omega"
+    }
+  ]
+}

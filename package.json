@@ -1,12 +1,13 @@
 {
-  "name": "rv-blog",
+  "name": "react-vite-blog",
+  "version": "0.4.0",
   "private": true,
-  "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "server": "json-server --watch ./db/db.json --port 3004"
   },
   "dependencies": {
     "axios": "^1.1.2",
