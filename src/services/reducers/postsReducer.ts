@@ -1,20 +1,25 @@
-const initialState = { posts: [], loading: false, error: null };
+import { PostsAction, ActionType } from '../../services';
 
 interface PostsState {
   posts: string[];
   loading: boolean;
-  error: string | null;
+  error: null | string;
 }
 
-const postsReducer = (state: PostsState = initialState, action: any) => {
+const initialState = { posts: [], loading: false, error: null };
+
+const postsReducer = (
+  state: PostsState = initialState,
+  action: PostsAction
+) => {
   switch (action.type) {
-    case 'fetch_posts':
+    case ActionType.FETCH_POSTS:
       return { ...state, posts: [], loading: true, error: null };
 
-    case 'fetch_posts_success':
+    case ActionType.FETCH_POSTS_SUCCESS:
       return { ...state, posts: action.payload, loading: false, error: null };
 
-    case 'fetch_posts_error':
+    case ActionType.FETCH_POSTS_ERROR:
       return { ...state, posts: [], loading: false, error: action.payload };
 
     default:

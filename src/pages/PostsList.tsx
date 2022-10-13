@@ -27,8 +27,8 @@ const PostsList: React.FunctionComponent = () => {
   let renderPostsOption = () => {
     return (
       <>
-        {loading && <p>loading...</p>}
-        {error && <p>{error}</p>}
+        {loading && <h4>Loading...</h4>}
+        {error && <p>Error: {error}</p>}
         {renderPostsList()}
       </>
     );
