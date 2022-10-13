@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 
 import { useDispatch, useSelector } from '../hooks/useTypedStore';
-import { fetchPosts } from '../services';
+import { actionCreators } from '../services';
 
 const PostsList: React.FunctionComponent = () => {
   const dispatch = useDispatch();
@@ -9,7 +9,7 @@ const PostsList: React.FunctionComponent = () => {
 
   useEffect(() => {
     // console.log(dispatch(fetchPosts()), 'ACTION >> fetchPosts >> PostsList');
-    dispatch(fetchPosts());
+    dispatch(actionCreators.fetchPosts());
   }, [dispatch]);
 
   const renderPostsList = () => {

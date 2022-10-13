@@ -1,4 +1,5 @@
-import { PostsAction, ActionType } from '../../services';
+import { PostsActions } from '../actions';
+import { ActionType } from '../actions-type';
 
 interface PostsState {
   posts: string[];
@@ -10,7 +11,7 @@ const initialState = { posts: [], loading: false, error: null };
 
 const postsReducer = (
   state: PostsState = initialState,
-  action: PostsAction
+  action: PostsActions
 ) => {
   switch (action.type) {
     case ActionType.FETCH_POSTS:
