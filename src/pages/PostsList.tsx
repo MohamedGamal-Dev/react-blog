@@ -1,21 +1,19 @@
 import React, { useEffect } from 'react';
 
-import { useDispatch, useSelector } from '../hooks/useTypedStore';
-import { actionCreators } from '../services';
+import { useActions } from '../hooks/useActions';
+import { useSelector } from '../hooks/useTypedStore';
 
 const PostsList: React.FunctionComponent = () => {
-  const dispatch = useDispatch();
+  const { fetchPosts } = useActions();
   let { posts, loading, error } = useSelector((state) => state.posts);
 
+  // console.log( * , ' * >> *');
   useEffect(() => {
-    // console.log(dispatch(fetchPosts()), 'ACTION >> fetchPosts >> PostsList');
-    dispatch(actionCreators.fetchPosts());
-  }, [dispatch]);
+    fetchPosts();
+  }, []);
 
   const renderPostsList = () => {
-    // console.log(posts, 'POSTS >> from >> PostList');
     return posts.map((post: any) => {
-      // console.log(posts, 'POST >> from >> PostList (map)');
       return (
         <React.Fragment key={post.id}>
           <h3>{post.title}</h3>
