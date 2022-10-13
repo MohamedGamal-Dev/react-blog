@@ -1,10 +1,11 @@
 import React from 'react';
+import PostsList from './pages/PostsList';
 
 const App = () => {
   return (
     <div>
       {/* App */}
-      {'Hello Awesome!!!'}
+      <PostsList />
     </div>
   );
 };
