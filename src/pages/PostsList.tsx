@@ -3,9 +3,9 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from '../hooks/useTypedStore';
 import { fetchPosts } from '../services';
 
-const PostsList: React.FC = () => {
+const PostsList: React.FunctionComponent = () => {
   const dispatch = useDispatch();
-  let { posts } = useSelector((state) => state.posts);
+  let { posts, loading, error } = useSelector((state) => state.posts);
 
   useEffect(() => {
     // console.log(dispatch(fetchPosts()), 'ACTION >> fetchPosts >> PostsList');
@@ -24,10 +24,20 @@ const PostsList: React.FC = () => {
     });
   };
 
+  let renderPostsOption = () => {
+    return (
+      <>
+        {loading && <p>loading...</p>}
+        {error && <p>{error}</p>}
+        {renderPostsList()}
+      </>
+    );
+  };
+
   return (
     <>
       <h2>Posts List</h2>
-      {renderPostsList()}
+      {renderPostsOption()}
     </>
   );
 };
