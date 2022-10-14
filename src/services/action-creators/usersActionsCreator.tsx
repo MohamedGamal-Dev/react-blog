@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Dispatch } from 'redux';
 
-import { UsersActionType, UsersActions } from '../../services';
+import { UsersActionType, UsersActions } from '..';
 
 const baseUsersURL = 'http://localhost:3004/users';
 
