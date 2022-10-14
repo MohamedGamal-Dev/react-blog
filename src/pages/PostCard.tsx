@@ -1,8 +1,8 @@
 import React from 'react';
-import { Post } from '../services/reducers/postsReducer';
+import { PostType } from '../services';
 
 interface PostProps {
-  post: Post;
+  post: PostType;
   children?: React.ReactNode;
 }
 

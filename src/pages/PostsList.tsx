@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 import { useActions } from '../hooks/useActions';
 import { useSelector } from '../hooks/useTypedStore';
-import { Post } from '../services/reducers/postsReducer';
+import { PostType } from '../services';
 import PostCard from './PostCard';
 
 const PostsList: React.FunctionComponent = () => {
@@ -15,7 +15,7 @@ const PostsList: React.FunctionComponent = () => {
   }, []);
 
   const renderPostsList = () => {
-    return posts.map((post: Post) => {
+    return posts.map((post: PostType) => {
       return (
         <React.Fragment key={post.id}>
           <PostCard post={post} />

@@ -1,14 +1,14 @@
-import { ActionType } from '../actions-type';
-import { Post } from '../reducers/postsReducer';
+import { PostsActionType, PostType } from '../../services';
+
 interface FetchPostsAction {
-  type: ActionType.FETCH_POSTS;
+  type: PostsActionType.FETCH_POSTS;
 }
 interface FetchPostsSuccessAction {
-  type: ActionType.FETCH_POSTS_SUCCESS;
-  payload: Post[];
+  type: PostsActionType.FETCH_POSTS_SUCCESS;
+  payload: PostType[];
 }
 interface FetchPostsErrorAction {
-  type: ActionType.FETCH_POSTS_ERROR;
+  type: PostsActionType.FETCH_POSTS_ERROR;
   payload: string;
 }
 
