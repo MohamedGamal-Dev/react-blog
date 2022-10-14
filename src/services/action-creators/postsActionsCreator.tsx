@@ -1,9 +1,13 @@
 import axios from 'axios';
 import { Dispatch } from 'redux';
+import { nanoid } from 'nanoid';
 
-import {PostsActionType, PostsActions} from '../../services'
-// import {PostsActions} from '../actions'
-
+import {
+  PostsActionType,
+  PostsActions,
+  CreatePostActionType,
+  CreatePostAction,
+} from '../../services';
 
 // Fetching Data from db API
 let basePostsURL = 'http://localhost:3004/posts';
@@ -15,7 +19,7 @@ export const fetchPosts = () => {
     });
 
     try {
-      let response = await axios.get(basePostsURL);
+      const response = await axios.get(basePostsURL);
 
       dispatch({
         type: PostsActionType.FETCH_POSTS_SUCCESS,
@@ -29,5 +33,18 @@ export const fetchPosts = () => {
         });
       }
     }
+  };
+};
+
+// Create New Post
+export const createPost = (title: string, body: string) => {
+  let newPost = { userId: 'XCMxarCjaY785a8tvZvX-', id: nanoid(), title, body };
+  async (dispatch: Dispatch<CreatePostAction>) => {
+    const { data } = await axios.post(basePostsURL, newPost);
+
+    dispatch({
+      type: CreatePostActionType.CREATE_POST,
+      payload: data,
+    });
   };
 };

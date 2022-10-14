@@ -1,4 +1,8 @@
-import { PostsActionType, PostType } from '../../services';
+import {
+  PostsActionType,
+  CreatePostActionType,
+  PostType,
+} from '../../services';
 
 interface FetchPostsAction {
   type: PostsActionType.FETCH_POSTS;
@@ -16,3 +20,8 @@ export type PostsActions =
   | FetchPostsAction
   | FetchPostsSuccessAction
   | FetchPostsErrorAction;
+
+export interface CreatePostAction {
+  type: CreatePostActionType.CREATE_POST;
+  payload: PostType;
+}

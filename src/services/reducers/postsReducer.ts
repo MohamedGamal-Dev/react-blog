@@ -2,13 +2,19 @@
 // import { PostsActionType } from '../actions-type';
 // import { PostsState } from '../../services';
 
-import { PostsActions, PostsActionType, PostsState } from '../../services';
+import {
+  PostsState,
+  PostsActions,
+  PostsActionType,
+  CreatePostActionType,
+  CreatePostAction,
+} from '../../services';
 
 const initialState = { posts: [], loading: false, error: null };
 
 const postsReducer = (
   state: PostsState = initialState,
-  action: PostsActions
+  action: PostsActions | CreatePostAction
 ) => {
   switch (action.type) {
     case PostsActionType.FETCH_POSTS:
@@ -19,6 +25,14 @@ const postsReducer = (
 
     case PostsActionType.FETCH_POSTS_ERROR:
       return { ...state, posts: [], loading: false, error: action.payload };
+
+    case CreatePostActionType.CREATE_POST:
+      return {
+        ...state,
+        posts: [action.payload, ...state.posts],
+        loading: false,
+        error: null,
+      };
 
     default:
       return state;
