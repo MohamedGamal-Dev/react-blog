@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 
 import { useActions } from '../hooks/useActions';
 import { useSelector } from '../hooks/useTypedStore';
+import { Post } from '../services/reducers/postsReducer';
+import PostCard from './PostCard';
 
 const PostsList: React.FunctionComponent = () => {
   const { fetchPosts } = useActions();
@@ -13,10 +15,10 @@ const PostsList: React.FunctionComponent = () => {
   }, []);
 
   const renderPostsList = () => {
-    return posts.map((post: any) => {
+    return posts.map((post: Post) => {
       return (
         <React.Fragment key={post.id}>
-          <h3>{post.title}</h3>
+          <PostCard post={post} />
         </React.Fragment>
       );
     });

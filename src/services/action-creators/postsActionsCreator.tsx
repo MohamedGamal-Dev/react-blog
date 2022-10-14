@@ -4,6 +4,7 @@ import { Dispatch } from 'redux';
 import {ActionType} from '../actions-type'
 import {PostsActions} from '../actions'
 
+
 // Fetching Data from db API
 let basePostsURL = 'http://localhost:3004/posts';
 

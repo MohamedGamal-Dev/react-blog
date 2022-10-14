@@ -1,11 +1,18 @@
 import { PostsActions } from '../actions';
 import { ActionType } from '../actions-type';
 
-interface PostsState {
-  posts: string[];
+export interface PostsState {
+  posts: Post[];
   loading: boolean;
   error: null | string;
 }
+
+export type Post = {
+  userId: string;
+  id: string;
+  title: string;
+  body: string;
+};
 
 const initialState = { posts: [], loading: false, error: null };
 
