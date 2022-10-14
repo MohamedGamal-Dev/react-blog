@@ -7,3 +7,7 @@ export enum PostsActionType {
 export enum CreatePostActionType {
   CREATE_POST = 'create_post',
 }
+
+export enum DeletePostActionType {
+  DELETE_POST = 'delete_post',
+}

@@ -3,14 +3,14 @@ import {
   PostsActions,
   PostsActionType,
   CreatePostActionType,
-  CreatePostAction,
+  DeletePostActionType,
 } from '../../services';
 
 const initialState = { posts: [], loading: false, error: null };
 
 const postsReducer = (
   state: PostsState = initialState,
-  action: PostsActions | CreatePostAction
+  action: PostsActions
 ) => {
   switch (action.type) {
     case PostsActionType.FETCH_POSTS:
@@ -26,8 +26,18 @@ const postsReducer = (
       return {
         ...state,
         posts: [...state.posts, action.payload],
-        loading: false,
-        error: null,
+        // loading: false,
+        // error: null,
+      };
+
+    case DeletePostActionType.DELETE_POST:
+      return {
+        ...state,
+        posts: state.posts.filter((post) => {
+          return post.id !== action.payload;
+        }),
+        // loading: false,
+        // error: null,
       };
 
     default:

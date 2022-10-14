@@ -6,7 +6,7 @@ import {
   PostsActionType,
   PostsActions,
   CreatePostActionType,
-  CreatePostAction,
+  DeletePostActionType,
 } from '../../services';
 
 // Fetching Data from db API
@@ -38,12 +38,25 @@ export const fetchPosts = () => {
 
 // Create New Post
 export const createPost = (newPost: PostType) => {
-  return async (dispatch: Dispatch<CreatePostAction>) => {
+  return async (dispatch: Dispatch<PostsActions>) => {
     const { data } = await axios.post(basePostsURL, newPost);
 
     dispatch({
       type: CreatePostActionType.CREATE_POST,
       payload: data,
+    });
+  };
+};
+
+// Delete Post
+export const deletePost = (id: string) => {
+  return async (dispatch: Dispatch<PostsActions>) => {
+    const config = { data: { id: id } };
+    const { data } = await axios.delete(basePostsURL, config);
+
+    dispatch({
+      type: DeletePostActionType.DELETE_POST,
+      payload: id,
     });
   };
 };
