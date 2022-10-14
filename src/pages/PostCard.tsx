@@ -1,6 +1,12 @@
 import React from 'react';
+import { Post } from '../services/reducers/postsReducer';
 
-const PostCard: React.FunctionComponent = ({ post }) => {
+interface PostProps {
+  post: Post;
+  children?: React.ReactNode;
+}
+
+const PostCard: React.FunctionComponent<PostProps> = ({ post }) => {
   const { userId, id, title, body } = post;
   // console.log(post, ' POST-PROP >> from >> PostCard');
 
