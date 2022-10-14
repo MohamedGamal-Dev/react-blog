@@ -4,6 +4,7 @@ import { useActions } from '../hooks/useActions';
 import { useSelector } from '../hooks/useTypedStore';
 import { PostType } from '../services';
 import PostCard from './PostCard';
+import PostCreate from './PostCreate';
 
 const PostsList: React.FunctionComponent = () => {
   const { fetchPosts } = useActions();
@@ -36,6 +37,9 @@ const PostsList: React.FunctionComponent = () => {
 
   return (
     <>
+      <PostCreate />
+      <br />
+      <br />
       <h2>Posts List</h2>
       {renderPostsOption()}
     </>

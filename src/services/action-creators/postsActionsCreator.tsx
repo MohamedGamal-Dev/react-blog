@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { Dispatch } from 'redux';
-import { nanoid } from 'nanoid';
 
 import {
+  PostType,
   PostsActionType,
   PostsActions,
   CreatePostActionType,
@@ -37,9 +37,8 @@ export const fetchPosts = () => {
 };
 
 // Create New Post
-export const createPost = (title: string, body: string) => {
-  let newPost = { userId: 'XCMxarCjaY785a8tvZvX-', id: nanoid(), title, body };
-  async (dispatch: Dispatch<CreatePostAction>) => {
+export const createPost = (newPost: PostType) => {
+  return async (dispatch: Dispatch<CreatePostAction>) => {
     const { data } = await axios.post(basePostsURL, newPost);
 
     dispatch({

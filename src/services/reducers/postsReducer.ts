@@ -1,7 +1,3 @@
-// import { PostsActions } from '../actions';
-// import { PostsActionType } from '../actions-type';
-// import { PostsState } from '../../services';
-
 import {
   PostsState,
   PostsActions,
@@ -29,7 +25,7 @@ const postsReducer = (
     case CreatePostActionType.CREATE_POST:
       return {
         ...state,
-        posts: [action.payload, ...state.posts],
+        posts: [...state.posts, action.payload],
         loading: false,
         error: null,
       };
