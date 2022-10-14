@@ -1,20 +1,26 @@
 import React from 'react';
-import { PostType } from '../services';
-
-interface PostProps {
-  post: PostType;
-  children?: React.ReactNode;
-}
+import { useActions } from '../hooks/useActions';
+import { PostProps } from '../services';
 
 const PostCard: React.FunctionComponent<PostProps> = ({ post }) => {
+  const { deletePost } = useActions();
+
   const { userId, id, title, body } = post;
   // console.log(post, ' POST-PROP >> from >> PostCard');
+
+  const handleDeleteClick = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    deletePost(id);
+  };
 
   const renderPostCard = () => {
     return (
       <>
         <h3>{title}</h3>
         <p>{body.substring(0, 80)}</p>
+        <button>Edit</button>
+        <button onClick={handleDeleteClick}>Delete</button>
       </>
     );
   };

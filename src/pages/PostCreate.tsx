@@ -23,6 +23,14 @@ const PostCreate: React.FunctionComponent = () => {
     };
 
     createPost(newPost);
+    resetElementState();
+  };
+
+  const resetElementState = () => {
+    setElementState({
+      title: '',
+      body: '',
+    });
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {

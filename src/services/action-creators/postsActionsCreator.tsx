@@ -40,7 +40,6 @@ export const fetchPosts = () => {
 export const createPost = (newPost: PostType) => {
   return async (dispatch: Dispatch<PostsActions>) => {
     const { data } = await axios.post(basePostsURL, newPost);
-
     dispatch({
       type: CreatePostActionType.CREATE_POST,
       payload: data,
@@ -51,9 +50,7 @@ export const createPost = (newPost: PostType) => {
 // Delete Post
 export const deletePost = (id: string) => {
   return async (dispatch: Dispatch<PostsActions>) => {
-    const config = { data: { id: id } };
-    const { data } = await axios.delete(basePostsURL, config);
-
+    const { data } = await axios.delete(`${basePostsURL}/${id}`);
     dispatch({
       type: DeletePostActionType.DELETE_POST,
       payload: id,
