@@ -11,3 +11,7 @@ export enum CreatePostActionType {
 export enum DeletePostActionType {
   DELETE_POST = 'delete_post',
 }
+
+export enum EditPostActionType {
+  EDIT_POST = 'edit_post',
+}

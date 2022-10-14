@@ -1,12 +1,14 @@
 import {
+  PostType,
   PostsState,
   PostsActions,
   PostsActionType,
   CreatePostActionType,
   DeletePostActionType,
+  EditPostActionType,
 } from '../../services';
 
-const initialState = { posts: [], loading: false, error: null };
+const initialState: PostsState = { posts: [], loading: false, error: null };
 
 const postsReducer = (
   state: PostsState = initialState,
@@ -35,6 +37,16 @@ const postsReducer = (
         ...state,
         posts: state.posts.filter((post) => {
           return post.id !== action.payload;
+        }),
+        // loading: false,
+        // error: null,
+      };
+
+    case EditPostActionType.EDIT_POST:
+      return {
+        ...state,
+        posts: state.posts.map((post) => {
+          return post.id === action.payload.id ? action.payload : post;
         }),
         // loading: false,
         // error: null,

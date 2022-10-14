@@ -2,6 +2,7 @@ import {
   PostsActionType,
   CreatePostActionType,
   DeletePostActionType,
+  EditPostActionType,
   PostType,
 } from '../../services';
 
@@ -27,9 +28,15 @@ interface DeletePostAction {
   payload: string;
 }
 
+interface EditPostAction {
+  type: EditPostActionType.EDIT_POST;
+  payload: PostType;
+}
+
 export type PostsActions =
   | FetchPostsAction
   | FetchPostsSuccessAction
   | FetchPostsErrorAction
   | CreatePostAction
-  | DeletePostAction;
+  | DeletePostAction
+  | EditPostAction;

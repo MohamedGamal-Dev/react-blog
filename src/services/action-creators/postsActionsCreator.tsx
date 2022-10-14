@@ -7,6 +7,7 @@ import {
   PostsActions,
   CreatePostActionType,
   DeletePostActionType,
+  EditPostActionType,
 } from '../../services';
 
 // Fetching Data from db API
@@ -54,6 +55,21 @@ export const deletePost = (id: string) => {
     dispatch({
       type: DeletePostActionType.DELETE_POST,
       payload: id,
+    });
+  };
+};
+
+// Create New Post
+export const editPost = (editedPost: PostType) => {
+  return async (dispatch: Dispatch<PostsActions>) => {
+    const { data } = await axios.put(
+      `${basePostsURL}/${editedPost.id}`,
+      editedPost
+    );
+
+    dispatch({
+      type: EditPostActionType.EDIT_POST,
+      payload: data,
     });
   };
 };

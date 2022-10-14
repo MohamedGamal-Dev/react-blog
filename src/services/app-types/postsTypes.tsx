@@ -10,3 +10,8 @@ export type PostType = {
   title: string;
   body: string;
 };
+
+export interface PostProps {
+  post: PostType;
+  children?: React.ReactNode;
+}
