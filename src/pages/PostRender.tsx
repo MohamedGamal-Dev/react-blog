@@ -1,13 +1,24 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 
+import { useSelector } from '../hooks/useTypedStore';
 import { useActions } from '../hooks/useActions';
-import { PostProps } from '../services';
 import PostAuthor from './PostAuthor';
-import PostRender from './PostRender';
 
-const PostCard: React.FunctionComponent<PostProps> = ({ post }) => {
+const PostRender: React.FunctionComponent = () => {
   const { deletePost } = useActions();
+  const navigate = useNavigate();
+  let { postId } = useParams();
+
+  const { posts } = useSelector((state) => state.posts);
+
+  const post = posts.find((post) => {
+    return post.id === postId;
+  });
+
+  if (!post) {
+    return <>{'Sorry!!!, Post Not Found'}</>;
+  }
 
   const { userId, id, title, body } = post;
   // console.log(post, ' POST-PROP >> from >> PostCard');
@@ -16,18 +27,14 @@ const PostCard: React.FunctionComponent<PostProps> = ({ post }) => {
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     deletePost(id);
-  };
-  const handlePostRender = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
-    <PostRender />;
+    navigate('/');
   };
 
-  const renderPostCard = () => {
+  const renderFullPost = () => {
     return (
       <>
         <h3>{title}</h3>
-        <p>{body.substring(0, 80)}</p>
+        <p>{body}</p>
         <div>
           Author: <PostAuthor userId={userId} />
         </div>
@@ -40,14 +47,6 @@ const PostCard: React.FunctionComponent<PostProps> = ({ post }) => {
           </Link>
         </button>
         <button onClick={handleDeleteClick}>Delete</button>
-        <button onClick={handlePostRender}>
-          <Link
-            to={`/post/${id}`}
-            style={{ color: 'inherit', textDecoration: 'inherit' }}
-          >
-            Read More
-          </Link>
-        </button>
       </>
     );
   };
@@ -55,9 +54,9 @@ const PostCard: React.FunctionComponent<PostProps> = ({ post }) => {
   return (
     <>
       {/* */}
-      {renderPostCard()}
+      {renderFullPost()}
     </>
   );
 };
 
-export default PostCard;
+export default PostRender;

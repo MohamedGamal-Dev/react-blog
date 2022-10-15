@@ -6,6 +6,7 @@ import PostsList from './pages/PostsList';
 import PostCreate from './pages/PostCreate';
 import PostEdit from './pages/PostEdit';
 import { useActions } from './hooks/useActions';
+import PostRender from './pages/PostRender';
 // import { useSelector } from './hooks/useTypedStore';
 
 const App = () => {
@@ -24,6 +25,7 @@ const App = () => {
         <Route path="/" element={<PostsList />} />
         <Route path="/post">
           <Route index element={<PostCreate />} />
+          <Route path="/post/:postId" element={<PostRender />} />
           <Route path="/post/:postId/edit" element={<PostEdit />} />
         </Route>
       </Route>

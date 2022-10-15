@@ -35,7 +35,7 @@ const PostCreate: React.FunctionComponent = () => {
     let editedPost = { userId, id, title, body };
 
     editPost(editedPost);
-    navigate('/');
+    navigate(`/post/${id}`);
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
