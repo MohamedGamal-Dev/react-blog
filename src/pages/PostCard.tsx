@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { useActions } from '../hooks/useActions';
 import { PostProps } from '../services';
+import PostAuthor from './PostAuthor';
 
 const PostCard: React.FunctionComponent<PostProps> = ({ post }) => {
   const { deletePost } = useActions();
@@ -21,6 +22,9 @@ const PostCard: React.FunctionComponent<PostProps> = ({ post }) => {
       <>
         <h3>{title}</h3>
         <p>{body.substring(0, 80)}</p>
+        <div>
+          Author: <PostAuthor userId={userId} />
+        </div>
         <button>
           <Link
             to={`/post/${id}/edit`}

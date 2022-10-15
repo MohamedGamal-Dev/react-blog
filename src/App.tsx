@@ -6,8 +6,13 @@ import PostsList from './pages/PostsList';
 import PostCreate from './pages/PostCreate';
 import PostEdit from './pages/PostEdit';
 import { useActions } from './hooks/useActions';
+// import { useSelector } from './hooks/useTypedStore';
 
 const App = () => {
+  // let appUsers = useSelector((state: any) => {
+  //   console.log(state.users);
+  // });
+
   const { fetchUsers } = useActions();
   useEffect(() => {
     fetchUsers();

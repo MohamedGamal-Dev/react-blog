@@ -1,6 +1,6 @@
 import { UsersState, UsersActions, UsersActionType } from '../../services';
 
-const initialState = { users: [] };
+const initialState: UsersState = { users: [] };
 
 const usersReducer = (
   state: UsersState = initialState,
