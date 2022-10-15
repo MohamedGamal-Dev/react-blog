@@ -2,18 +2,14 @@ import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import AppLayout from './layout/AppLayout';
+import CatchAll from './layout/CatchAll';
 import PostsList from './pages/PostsList';
 import PostCreate from './pages/PostCreate';
 import PostEdit from './pages/PostEdit';
 import { useActions } from './hooks/useActions';
 import PostRender from './pages/PostRender';
-// import { useSelector } from './hooks/useTypedStore';
 
 const App = () => {
-  // let appUsers = useSelector((state: any) => {
-  //   console.log(state.users);
-  // });
-
   const { fetchUsers } = useActions();
   useEffect(() => {
     fetchUsers();
@@ -28,6 +24,7 @@ const App = () => {
           <Route path="/post/:postId" element={<PostRender />} />
           <Route path="/post/:postId/edit" element={<PostEdit />} />
         </Route>
+        <Route path="*" element={<CatchAll />} />
       </Route>
     </Routes>
   );
