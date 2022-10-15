@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import { Link, useParams, useNavigate, Navigate } from 'react-router-dom';
 
 import { useAppState } from '../hooks/useAppState';
 import { useActions } from '../hooks/useActions';
@@ -9,9 +9,22 @@ const PostRender: React.FunctionComponent = () => {
   const { deletePost } = useActions();
   const navigate = useNavigate();
   let { postId } = useParams();
+  const { postsList } = useAppState();
 
-  const { getPostById } = useAppState();
-  const post = getPostById(postId!);
+  // NOTE: n16
+  const post = postsList.find((post) => {
+    return post.id === postId;
+  });
+
+  if (!post) {
+    return (
+      <>
+        {'Sorry!!!, Post Not Found'}
+        <Navigate to="/"  />
+      </>
+    );
+  }
+
   const { userId, id, title, body } = post;
 
   const handleDeleteClick = (
