@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { nanoid } from 'nanoid';
 
 import { useActions } from '../hooks/useActions';
+import { useAppState } from '../hooks/useAppState';
 
 const PostCreate: React.FunctionComponent = () => {
   const { createPost } = useActions();
+  let { usersState } = useAppState();
 
   const [elementState, setElementState] = useState({
     title: '',

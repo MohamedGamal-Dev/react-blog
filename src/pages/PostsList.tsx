@@ -8,7 +8,7 @@ import PostCreate from './PostCreate';
 
 const PostsList: React.FunctionComponent = () => {
   const { fetchPosts } = useActions();
-  let { posts, loading, error } = useSelector((state) => state.posts);
+  const { posts, loading, error } = useSelector((state) => state.posts);
 
   // console.log( * , ' * >> *');
   useEffect(() => {
