@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { nanoid } from 'nanoid';
+import { useNavigate } from 'react-router-dom';
 
 import { useActions } from '../hooks/useActions';
 import { useAppState } from '../hooks/useAppState';
@@ -7,6 +8,7 @@ import { useAppState } from '../hooks/useAppState';
 const PostCreate: React.FunctionComponent = () => {
   const { createPost } = useActions();
   const { usersState } = useAppState();
+  const navigate = useNavigate();
 
   const initialState = {
     userId: '',
@@ -29,6 +31,7 @@ const PostCreate: React.FunctionComponent = () => {
 
     createPost(newPost);
     setElementState(initialState);
+    navigate('/');
   };
 
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -92,7 +95,6 @@ const PostCreate: React.FunctionComponent = () => {
     );
   };
 
-  // console.log(elementState, ' elementState >> CreatePost');
   return (
     <>
       <h2>ADD NEW POST</h2>

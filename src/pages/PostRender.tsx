@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 
-import { useSelector } from '../hooks/useTypedStore';
+import { useAppState } from '../hooks/useAppState';
 import { useActions } from '../hooks/useActions';
 import PostAuthor from './PostAuthor';
 
@@ -10,18 +10,9 @@ const PostRender: React.FunctionComponent = () => {
   const navigate = useNavigate();
   let { postId } = useParams();
 
-  const { posts } = useSelector((state) => state.posts);
-
-  const post = posts.find((post) => {
-    return post.id === postId;
-  });
-
-  if (!post) {
-    return <>{'Sorry!!!, Post Not Found'}</>;
-  }
-
+  const { getPostById } = useAppState();
+  const post = getPostById(postId!);
   const { userId, id, title, body } = post;
-  // console.log(post, ' POST-PROP >> from >> PostCard');
 
   const handleDeleteClick = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -51,12 +42,7 @@ const PostRender: React.FunctionComponent = () => {
     );
   };
 
-  return (
-    <>
-      {/* */}
-      {renderFullPost()}
-    </>
-  );
+  return <>{renderFullPost()}</>;
 };
 
 export default PostRender;

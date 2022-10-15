@@ -8,9 +8,7 @@ import PostRender from './PostRender';
 
 const PostCard: React.FunctionComponent<PostProps> = ({ post }) => {
   const { deletePost } = useActions();
-
   const { userId, id, title, body } = post;
-  // console.log(post, ' POST-PROP >> from >> PostCard');
 
   const handleDeleteClick = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -52,12 +50,7 @@ const PostCard: React.FunctionComponent<PostProps> = ({ post }) => {
     );
   };
 
-  return (
-    <>
-      {/* */}
-      {renderPostCard()}
-    </>
-  );
+  return <>{renderPostCard()}</>;
 };
 
 export default PostCard;

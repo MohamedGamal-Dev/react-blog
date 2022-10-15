@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { useSelector } from '../hooks/useTypedStore';
+import { useAppState } from '../hooks/useAppState';
 import { useActions } from '../hooks/useActions';
 import { PostType } from '../services';
 import PostAuthor from './PostAuthor';
@@ -10,17 +10,11 @@ const PostCreate: React.FunctionComponent = () => {
   const { editPost } = useActions();
   const navigate = useNavigate();
   const { postId } = useParams();
-  const { posts } = useSelector((state) => state.posts);
 
-  const post = posts.find((post) => {
-    return post.id === postId;
-  });
+  const { getPostById } = useAppState();
+  const post = getPostById(postId!);
 
-  if (!post) {
-    return <>{'Sorry!!!, Post Not Found'}</>;
-  }
-
-  const [elementState, setElementState] = useState<PostType>({
+  const [elementState, setElementState] = useState({
     userId: post.userId,
     id: post.id,
     title: post.title,
@@ -32,7 +26,7 @@ const PostCreate: React.FunctionComponent = () => {
   const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    let editedPost = { userId, id, title, body };
+    const editedPost: PostType = { userId, id, title, body };
 
     editPost(editedPost);
     navigate(`/post/${id}`);
