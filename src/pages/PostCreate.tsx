@@ -6,36 +6,32 @@ import { useAppState } from '../hooks/useAppState';
 
 const PostCreate: React.FunctionComponent = () => {
   const { createPost } = useActions();
-  let { usersState } = useAppState();
+  const { usersState } = useAppState();
 
-  const [elementState, setElementState] = useState({
+  const initialState = {
+    userId: '',
     title: '',
     body: '',
-  });
+  };
+
+  const [elementState, setElementState] = useState(initialState);
 
   const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const { title, body } = elementState;
+    const { userId, title, body } = elementState;
 
     let newPost = {
-      userId: 'XCMxarCjaY785a8tvZvX-',
+      userId,
       id: nanoid(),
       title,
       body,
     };
 
     createPost(newPost);
-    resetElementState();
+    setElementState(initialState);
   };
 
-  const resetElementState = () => {
-    setElementState({
-      title: '',
-      body: '',
-    });
-  };
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = event.target;
 
     setElementState((prevElementState) => ({
@@ -44,20 +40,52 @@ const PostCreate: React.FunctionComponent = () => {
     }));
   };
 
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+
+    setElementState((prevElementState) => ({
+      ...prevElementState,
+      [name]: value,
+    }));
+  };
+
+  const renderUsersOptionList = () => {
+    return usersState.map((user) => {
+      return (
+        <React.Fragment key={user.id}>
+          <option value={user.id}>{user.name}</option>
+        </React.Fragment>
+      );
+    });
+  };
+
   const renderCreatePostForm = () => {
     return (
       <>
-        <form onSubmit={handleFormSubmit}>
+        <form
+          onSubmit={handleFormSubmit}
+          style={{ display: 'flex', flexDirection: 'column' }}
+        >
           <input
             name="title"
             value={elementState.title}
-            onChange={handleChange}
+            onChange={handleInputChange}
           />
           <input
             name="body"
             value={elementState.body}
-            onChange={handleChange}
+            onChange={handleInputChange}
           />
+
+          <select
+            name="userId"
+            value={elementState.userId}
+            onChange={handleSelectChange}
+          >
+            <option value=""> --Please choose author-- </option>
+            {renderUsersOptionList()}
+          </select>
+
           <button>ADD</button>
         </form>
       </>

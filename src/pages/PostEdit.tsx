@@ -3,7 +3,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { useSelector } from '../hooks/useTypedStore';
 import { useActions } from '../hooks/useActions';
-// import { PostProps } from '../services';
+import { PostType } from '../services';
+import PostAuthor from './PostAuthor';
 
 const PostCreate: React.FunctionComponent = () => {
   const { editPost } = useActions();
@@ -19,17 +20,19 @@ const PostCreate: React.FunctionComponent = () => {
     return <>{'Sorry!!!, Post Not Found'}</>;
   }
 
-  const { title, body } = post;
-
-  const [elementState, setElementState] = useState({
-    title,
-    body,
+  const [elementState, setElementState] = useState<PostType>({
+    userId: post.userId,
+    id: post.id,
+    title: post.title,
+    body: post.body,
   });
+
+  const { userId, id, title, body } = elementState;
 
   const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const { title, body } = elementState;
-    let editedPost = { ...post, title, body };
+
+    let editedPost = { userId, id, title, body };
 
     editPost(editedPost);
     navigate('/');
@@ -47,17 +50,15 @@ const PostCreate: React.FunctionComponent = () => {
   const renderEditPostForm = () => {
     return (
       <>
-        <form onSubmit={handleFormSubmit}>
-          <input
-            name="title"
-            value={elementState.title}
-            onChange={handleChange}
-          />
-          <input
-            name="body"
-            value={elementState.body}
-            onChange={handleChange}
-          />
+        <form
+          onSubmit={handleFormSubmit}
+          style={{ display: 'flex', flexDirection: 'column' }}
+        >
+          <input name="title" value={title} onChange={handleChange} />
+          <input name="body" value={body} onChange={handleChange} />
+          <div>
+            Author: <PostAuthor userId={userId} />
+          </div>
           <button>Save</button>
         </form>
       </>
