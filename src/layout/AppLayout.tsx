@@ -1,7 +1,7 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
 import HeaderHeroSection from './HeaderHeroSection';
 import HeaderNav from './HeaderNavbar';
+import MainBody from './MainBody';
 
 const AppLayout = () => {
   return (
@@ -15,11 +15,7 @@ const AppLayout = () => {
         <HeaderHeroSection />
 
         {/* {===-> MAIN-BODY <-===} */}
-
-        {/* {===->> MAIN-CONTENT <<-===} */}
-        <Outlet />
-
-        {/* {===->> MAIN-SIDEBAR <<-===} */}
+        <MainBody />
 
         {/* {===-> FOOTER <-===} */}
       </div>
