@@ -46,18 +46,19 @@ const HeaderNavbar: React.FunctionComponent = () => {
 
   return (
     <>
-      <nav className="container relative mx-auto p-6 ">
-        <div className="flex items-center justify-between">
-          {uiLogo()}
+      <div className="border-b-0 border-transparent">
+        <nav className="container relative mx-auto p-6 ">
+          <div className="flex items-center justify-between">
+            {uiLogo()}
 
-          <div className="hidden space-x-6 md:flex ">
-            {pages.map((page) => {
-              const { title, to } = page;
+            <div className="hidden space-x-6 md:flex ">
+              {pages.map((page) => {
+                const { title, to } = page;
 
-              return (
-                <div
-                  key={title}
-                  className={`
+                return (
+                  <div
+                    key={title}
+                    className={`
                 font-medium
                 text-mgLight-neutral
                 hover:text-mgLight-primary
@@ -65,23 +66,24 @@ const HeaderNavbar: React.FunctionComponent = () => {
                 hover:decoration-mgLight-primary 
                 hover:decoration-4 
                 hover:underline-offset-8`}
-                >
-                  <Link to={to}>{title.toUpperCase()}</Link>
-                </div>
-              );
-            })}
-          </div>
+                  >
+                    <Link to={to}>{title.toUpperCase()}</Link>
+                  </div>
+                );
+              })}
+            </div>
 
-          <div>
-            <Link
-              to="/"
-              className="baseline hidden rounded-full bg-mgLight-primary p-3 px-6 pt-2 text-white hover:bg-mgLight-secondary md:block"
-            >
-              What's on your mind
-            </Link>
+            <div>
+              <Link
+                to="/"
+                className="baseline hidden rounded-full bg-mgLight-primary p-3 px-6 pt-2 text-white hover:bg-mgLight-secondary md:block"
+              >
+                What's on your mind
+              </Link>
+            </div>
           </div>
-        </div>
-      </nav>
+        </nav>
+      </div>
     </>
   );
 };
