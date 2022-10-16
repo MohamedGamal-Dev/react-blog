@@ -1,23 +1,23 @@
 import React from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 
-function AppLayout() {
+const AppLayout = () => {
   return (
-    <>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">HOME</Link>
-          </li>
-          <li>
-            <Link to="/post">New Post</Link>
-          </li>
-        </ul>
-      </nav>
+    <div className="min-h-screen min-w-full">
+      <div className="container mx-auto">
+        {/* {===-> HEADER <-===} */}
 
-      <Outlet />
-    </>
+        {/* {===-> MAIN-BODY <-===} */}
+
+        {/* {===->> MAIN-CONTENT <<-===} */}
+        <Outlet />
+
+        {/* {===->> MAIN-SIDEBAR <<-===} */}
+
+        {/* {===-> FOOTER <-===} */}
+      </div>
+    </div>
   );
-}
+};
 
 export default AppLayout;

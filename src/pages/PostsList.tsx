@@ -3,12 +3,12 @@ import React, { useEffect } from 'react';
 import { useActions } from '../hooks/useActions';
 import { useSelector } from '../hooks/useTypedStore';
 import { PostType } from '../services';
+import { DummyLongP } from './ContentForTestStyles';
 import PostCard from './PostCard';
 
 const PostsList: React.FunctionComponent = () => {
   const { fetchPosts } = useActions();
   const { posts, loading, error } = useSelector((state) => state.posts);
-
 
   useEffect(() => {
     fetchPosts();
@@ -38,6 +38,7 @@ const PostsList: React.FunctionComponent = () => {
     <>
       <h2>Posts List</h2>
       {renderPostsOption()}
+      <DummyLongP />
     </>
   );
 };
