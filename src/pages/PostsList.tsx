@@ -5,7 +5,7 @@ import { useSelector } from '../hooks/useTypedStore';
 import { PostType } from '../services';
 // import { DummyLongP } from './ContentForTestStyles';
 import PostCard from './PostCard';
-import TestCard from './TestCard';
+// import TestCard from './TestCard';
 
 const PostsList: React.FunctionComponent = () => {
   const { fetchPosts } = useActions();

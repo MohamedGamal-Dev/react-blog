@@ -3,7 +3,7 @@ import React from 'react';
 const HeaderNewsletter = () => {
   return (
     <>
-      <div className="flex bg-mgLight-primary p-5">
+      <div className="flex bg-mgLight-primary p-5 shadow-sm shadow-mgLight-secondary">
         {/* { Container } */}
         <div className="container mx-auto flex flex-col items-center px-6 md:flex-row md:space-y-0 md:space-x-2 sm-only:space-y-4">
           {/* { CTA } */}

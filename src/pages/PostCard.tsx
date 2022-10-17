@@ -26,9 +26,8 @@ const PostCard: React.FunctionComponent<PostProps> = ({ post }) => {
       <>
         {/* { MAIN POST-CARD Frame } */}
         <div
-          className="mx-auto rounded-lg  bg-mgLight-base-100/40 px-8 py-4 shadow
-           shadow-mgLight-secondary"
-          //  dark:bg-gray-800
+          className="mx-auto rounded-lg  border border-mgLight-secondary/20 bg-mgLight-base-100/40 px-8
+           py-4 shadow shadow-mgLight-secondary "
         >
           {/* { *** TITLE && POST OPTIONS *** } */}
           <div className="flex items-center justify-between">

@@ -1,3 +1,4 @@
+import FooterContainer from './FooterContainer';
 import HeaderContainer from './HeaderContainer';
 import MainBody from './MainBody';
 
@@ -11,6 +12,7 @@ const AppLayout = () => {
       <MainBody />
 
       {/* {===-> FOOTER <-===} */}
+      <FooterContainer />
     </div>
   );
 };
