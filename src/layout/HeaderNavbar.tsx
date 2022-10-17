@@ -39,8 +39,8 @@ const HeaderNavbar: React.FunctionComponent = () => {
 
   return (
     <>
-      <div className="border-b-0 border-transparent">
-        <nav className="container relative mx-auto p-6 ">
+      <div className="border-b-0 border-transparent ">
+        <nav className="container relative mx-auto p-2 ">
           <div className="flex items-center justify-between">
             {uiLogo()}
 

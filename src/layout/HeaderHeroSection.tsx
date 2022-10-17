@@ -4,8 +4,8 @@ const HeaderHeroSection = () => {
   return (
     <>
       <section id="header-hero-section">
-        <div className="container mx-auto mt-8 flex flex-col-reverse items-center space-y-0 px-6 md:flex-row md:space-y-0 ">
-          <div className="mb-10 flex flex-col space-y-4 md:w-1/2 md:space-y-8">
+        <div className="container mx-auto flex flex-col-reverse items-center space-y-0 px-6 md:flex-row md:space-y-0 ">
+          <div className="flex flex-col space-y-4 md:w-1/2 md:space-y-8">
             <h1 className="max-w-md text-center text-3xl font-bold sm:mt-4 md:text-left md:text-5xl">
               Some Cool Catchphrase
             </h1>
