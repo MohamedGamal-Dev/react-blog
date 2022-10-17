@@ -18,9 +18,10 @@ const PostCreate: React.FunctionComponent = () => {
 
   const [elementState, setElementState] = useState(initialState);
 
+  const { userId, title, body } = elementState;
+
   const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const { userId, title, body } = elementState;
 
     let newPost = {
       userId,
@@ -65,32 +66,42 @@ const PostCreate: React.FunctionComponent = () => {
   const renderCreatePostForm = () => {
     return (
       <>
-        <form
-          onSubmit={handleFormSubmit}
-          style={{ display: 'flex', flexDirection: 'column' }}
+        <div
+          className="mx-auto rounded-lg  border border-mgLight-secondary/20 bg-mgLight-base-100/40 px-8
+           py-4 shadow shadow-mgLight-secondary "
         >
-          <input
-            name="title"
-            value={elementState.title}
-            onChange={handleInputChange}
-          />
-          <input
-            name="body"
-            value={elementState.body}
-            onChange={handleInputChange}
-          />
+          <form onSubmit={handleFormSubmit} className="flex flex-col space-y-4">
+            <input
+              name="title"
+              value={title}
+              onChange={handleInputChange}
+              className="block w-full rounded-lg border-2 border-mgLight-secondary bg-mgLight-secondary/20 p-2.5 text-lg text-mgLight-neutral shadow-sm shadow-mgLight-warning outline-none focus:border-mgLight-primary focus:ring-mgLight-secondary"
+              placeholder="Please Enter Post Title"
+              required
+            />
+            <input
+              name="body"
+              value={body}
+              onChange={handleInputChange}
+              className="block w-full rounded-lg border-2 border-mgLight-secondary bg-mgLight-secondary/20 p-2.5 text-lg text-mgLight-neutral shadow-sm shadow-mgLight-warning outline-none focus:border-mgLight-primary focus:ring-mgLight-secondary"
+              placeholder="Please Enter Post Content"
+              required
+            />
 
-          <select
-            name="userId"
-            value={elementState.userId}
-            onChange={handleSelectChange}
-          >
-            <option value=""> --Please choose author-- </option>
-            {renderUsersOptionList()}
-          </select>
+            <select
+              name="userId"
+              value={userId}
+              onChange={handleSelectChange}
+            >
+              <option value=""> --Please choose author-- </option>
+              {renderUsersOptionList()}
+            </select>
 
-          <button>ADD</button>
-        </form>
+            <button className="rounded-lg bg-mgLight-accent px-5 py-2.5 text-center text-lg font-bold text-white shadow-md shadow-mgLight-success hover:bg-mgLight-success hover:shadow-mgLight-accent  focus:outline-none">
+              ADD
+            </button>
+          </form>
+        </div>
       </>
     );
   };

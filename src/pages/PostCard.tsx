@@ -33,7 +33,7 @@ const PostCard: React.FunctionComponent<PostProps> = ({ post }) => {
           <div className="flex items-center justify-between">
             <Link
               to={`/post/${id}`}
-              className="text-2xl font-bold text-mgLight-neutral hover:text-gray-600 hover:underline"
+              className="text-2xl font-bold text-mgLight-neutral hover:text-mgLight-accent hover:underline"
             >
               {title}
             </Link>
