@@ -1,24 +1,16 @@
-import React from 'react';
-import HeaderHeroSection from './HeaderHeroSection';
-import HeaderNav from './HeaderNavbar';
+import HeaderContainer from './HeaderContainer';
 import MainBody from './MainBody';
 
 const AppLayout = () => {
   return (
     <div className="min-h-screen min-w-full">
-      {/* {===->> HEADER-NAV-FLUID <<-===} */}
-      {/* <HeaderNav /> */}
+      {/* {===-> HEADER <-===} */}
+      <HeaderContainer />
 
-      <div className="container mx-auto">
-        {/* {===-> HEADER <-===} */}
-        <HeaderNav />
-        <HeaderHeroSection />
+      {/* {===-> MAIN-BODY <-===} */}
+      <MainBody />
 
-        {/* {===-> MAIN-BODY <-===} */}
-        <MainBody />
-
-        {/* {===-> FOOTER <-===} */}
-      </div>
+      {/* {===-> FOOTER <-===} */}
     </div>
   );
 };

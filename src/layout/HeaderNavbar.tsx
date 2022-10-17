@@ -22,13 +22,6 @@ const HeaderNavbar: React.FunctionComponent = () => {
     },
   ];
 
-  // let navColors = {
-  //   primary: `mgLight-primary`,
-  //   secondary: `mgLight-secondary`,
-  //   textLogo: 'text-mgLight-primary',
-  //   textItem: 'text-mgLight-neutral',
-  // };
-
   const uiLogo = () => {
     return (
       <div className="flex flex-row pt-2">
