@@ -10,6 +10,22 @@ const MainSidebar: React.FunctionComponent = () => {
           <Link to="/post">What's on your mind</Link>
         </div>
       </div>
+      <div className="mt-5 flex flex-col">
+        <h3 className="text-lg font-medium">Static Placeholder</h3>
+
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora
+          voluptatum qui officia quasi, veritatis, eligendi illo vero pariatur
+          commodi fugit est debitis consectetur quibusdam omnis quo. Eligendi
+          neque eius sit.
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora
+          voluptatum qui officia quasi, veritatis, eligendi illo vero pariatur
+          commodi fugit est debitis consectetur quibusdam omnis quo. Eligendi
+          neque eius sit.
+        </p>
+      </div>
     </>
   );
 };

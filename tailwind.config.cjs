@@ -8,6 +8,7 @@ module.exports = {
       lg: '976px',
       xl: '1280',
       '2xl': '1440px',
+      'sm-only': { min: '480px', max: '767px' },
     },
     extend: {
       colors: {
@@ -16,7 +17,8 @@ module.exports = {
           secondary: '#F4A462',
           accent: '#274754',
           neutral: '#1D1E25',
-          'base-100': '#FCECE9',
+          'base-100': '#FDF0ED', //96
+          // 'base-100': '#FCECE9',  //95
           info: '#277CA0',
           success: '#2A9D90',
           warning: '#E8C468',

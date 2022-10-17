@@ -3,8 +3,9 @@ import React, { useEffect } from 'react';
 import { useActions } from '../hooks/useActions';
 import { useSelector } from '../hooks/useTypedStore';
 import { PostType } from '../services';
-import { DummyLongP } from './ContentForTestStyles';
+// import { DummyLongP } from './ContentForTestStyles';
 import PostCard from './PostCard';
+import TestCard from './TestCard';
 
 const PostsList: React.FunctionComponent = () => {
   const { fetchPosts } = useActions();
@@ -19,6 +20,7 @@ const PostsList: React.FunctionComponent = () => {
       return (
         <React.Fragment key={post.id}>
           <PostCard post={post} />
+          {/* <TestCard post={post} /> */}
         </React.Fragment>
       );
     });
@@ -36,9 +38,9 @@ const PostsList: React.FunctionComponent = () => {
 
   return (
     <>
-      <h2>Posts List</h2>
-      {renderPostsOption()}
-      <DummyLongP />
+      {/* <h2>Posts List</h2> */}
+      <div className="flex-1 flex-col space-y-2">{renderPostsOption()}</div>
+      {/* <DummyLongP /> */}
     </>
   );
 };
