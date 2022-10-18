@@ -1,17 +1,12 @@
 import React, { useEffect } from 'react';
 
-import { useActions } from '../hooks/useActions';
 import { useSelector } from '../hooks/useTypedStore';
 import { PostType } from '../services';
 import PostCard from './PostCard';
 
 const PostsList: React.FunctionComponent = () => {
-  const { fetchPosts } = useActions();
-  const { posts, loading, error } = useSelector((state) => state.posts);
 
-  useEffect(() => {
-    fetchPosts();
-  }, []);
+  const { posts, loading, error } = useSelector((state) => state.posts);
 
   const renderPostsList = () => {
     return posts.map((post: PostType) => {

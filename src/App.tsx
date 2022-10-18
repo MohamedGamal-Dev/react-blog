@@ -10,9 +10,10 @@ import { useActions } from './hooks/useActions';
 import PostRender from './pages/PostRender';
 
 const App = () => {
-  const { fetchUsers } = useActions();
+  const { fetchUsers, fetchPosts } = useActions();
   useEffect(() => {
     fetchUsers();
+    fetchPosts();
   }, []);
 
   return (

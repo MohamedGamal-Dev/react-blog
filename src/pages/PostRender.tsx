@@ -20,7 +20,7 @@ const PostRender: React.FunctionComponent = () => {
     return (
       <>
         {'Sorry!!!, Post Not Found'}
-        <Navigate to="/"  />
+        {/* <Navigate to="/" /> */}
       </>
     );
   }
@@ -42,7 +42,7 @@ const PostRender: React.FunctionComponent = () => {
           <div className="rounded-lg bg-mgLight-base-100 py-4 px-6">
             {/* { *** TITLE && POST OPTIONS *** } */}
             <div className="flex items-center justify-between">
-              <h2 className="text-3xl font-bold text-mgLight-neutral hover:text-mgLight-accent hover:underline">
+              <h2 className="text-2xl font-bold text-mgLight-neutral hover:text-mgLight-accent hover:underline md:text-3xl">
                 {title}
               </h2>
 

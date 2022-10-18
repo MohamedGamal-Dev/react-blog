@@ -10,7 +10,6 @@ const HeaderNewsletter: React.FunctionComponent = () => {
   const { newsLetterEmail } = elementState;
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(event.target.value);
     const { name, value } = event.target;
 
     setElementState((prevElementState) => ({
