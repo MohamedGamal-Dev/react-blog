@@ -24,8 +24,9 @@ const HeaderHeroSection = () => {
             </div>
           </div>
 
-          <div className="flex justify-center md:w-1/2">
+          <div className="flex justify-center md:w-1/2 ">
             <img
+            className='rounded-3xl'
               src="./src/assets/images/hero-section-beta.jpg"
               alt="Place Holder"
             />

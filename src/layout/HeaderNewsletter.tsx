@@ -1,6 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { InputText } from '../components';
 
-const HeaderNewsletter = () => {
+const HeaderNewsletter: React.FunctionComponent = () => {
+  const initialState = {
+    newsLetterEmail: '',
+  };
+
+  const [elementState, setElementState] = useState(initialState);
+  const { newsLetterEmail } = elementState;
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(event.target.value);
+    const { name, value } = event.target;
+
+    setElementState((prevElementState) => ({
+      ...prevElementState,
+      [name]: value,
+    }));
+  };
+
+  const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    console.log(newsLetterEmail, '=== >> News Letter Email SUBMITTED << ===');
+    setElementState(initialState);
+  };
+
+  let inputTextOptions = {
+    type: 'email',
+    InputValue: `${newsLetterEmail}`,
+    InputName: 'newsLetterEmail',
+    onInputChange: handleInputChange,
+    classNames: ``,
+    required: true,
+    placeholder: 'Your Email address',
+  };
+
   return (
     <>
       <div className="flex bg-mgLight-primary p-5 shadow-sm shadow-mgLight-secondary">
@@ -16,16 +50,11 @@ const HeaderNewsletter = () => {
             </div>
           </blockquote>
           {/* { CTA- Form } */}
-          <form className="md:w-1/2">
+          <form onSubmit={handleFormSubmit} className="md:w-1/2">
             <div className="flex flex-col md:flex-row md:space-x-2 sm-only:space-y-2">
-              <input
-                type="email"
-                id="email"
-                className="block w-full rounded-lg border-2 border-mgLight-secondary bg-gray-50 p-2.5 text-lg text-mgLight-neutral shadow-sm shadow-mgLight-warning outline-none focus:border-mgLight-base-100 focus:ring-mgLight-secondary"
-                placeholder="email-address@some-domain.com"
-                required
-              />
-              <button className="rounded-lg bg-mgLight-secondary px-5 py-2.5 text-center text-lg font-bold text-white shadow-sm shadow-mgLight-base-100 hover:bg-gradient-to-l hover:ring-2 hover:ring-mgLight-base-100 focus:outline-none">
+              <InputText inputTextOptions={inputTextOptions} />
+
+              <button className="rounded-lg bg-mgLight-secondary px-5 py-2.5 text-center text-lg font-bold text-white shadow-sm shadow-mgLight-base-100 hover:bg-gradient-to-l hover:ring-2 hover:ring-mgLight-base-100 focus:outline-none lg:px-12">
                 Join
               </button>
             </div>
