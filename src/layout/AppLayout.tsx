@@ -1,23 +1,20 @@
-import React from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import FooterContainer from './FooterContainer';
+import HeaderContainer from './HeaderContainer';
+import MainBody from './MainBody';
 
-function AppLayout() {
+const AppLayout = () => {
   return (
-    <>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">HOME</Link>
-          </li>
-          <li>
-            <Link to="/post">New Post</Link>
-          </li>
-        </ul>
-      </nav>
+    <div className="min-h-screen min-w-full">
+      {/* {===-> HEADER <-===} */}
+      <HeaderContainer />
 
-      <Outlet />
-    </>
+      {/* {===-> MAIN-BODY <-===} */}
+      <MainBody />
+
+      {/* {===-> FOOTER <-===} */}
+      <FooterContainer />
+    </div>
   );
-}
+};
 
 export default AppLayout;

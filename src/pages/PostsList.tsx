@@ -9,7 +9,6 @@ const PostsList: React.FunctionComponent = () => {
   const { fetchPosts } = useActions();
   const { posts, loading, error } = useSelector((state) => state.posts);
 
-
   useEffect(() => {
     fetchPosts();
   }, []);
@@ -19,6 +18,7 @@ const PostsList: React.FunctionComponent = () => {
       return (
         <React.Fragment key={post.id}>
           <PostCard post={post} />
+          {/* <TestCard post={post} /> */}
         </React.Fragment>
       );
     });
@@ -36,8 +36,9 @@ const PostsList: React.FunctionComponent = () => {
 
   return (
     <>
-      <h2>Posts List</h2>
-      {renderPostsOption()}
+      {/* <h2>Posts List</h2> */}
+      <div className="flex-1 flex-col space-y-4">{renderPostsOption()}</div>
+      {/* <DummyLongP /> */}
     </>
   );
 };
