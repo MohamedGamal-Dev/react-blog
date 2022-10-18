@@ -39,7 +39,7 @@ const PostsList: React.FunctionComponent = () => {
   return (
     <>
       {/* <h2>Posts List</h2> */}
-      <div className="flex-1 flex-col space-y-2">{renderPostsOption()}</div>
+      <div className="flex-1 flex-col space-y-4">{renderPostsOption()}</div>
       {/* <DummyLongP /> */}
     </>
   );
