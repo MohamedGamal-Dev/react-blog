@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { InputText } from '../components';
+import { InputText } from '../components/ui/inputs';
 
 const HeaderNewsletter: React.FunctionComponent = () => {
   const initialState = {
