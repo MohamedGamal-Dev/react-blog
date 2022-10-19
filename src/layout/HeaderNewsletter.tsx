@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { InputText } from '../components/ui/inputs';
+import { InputField } from '../components';
 
 const HeaderNewsletter: React.FunctionComponent = () => {
   const initialState = {
@@ -51,7 +51,7 @@ const HeaderNewsletter: React.FunctionComponent = () => {
           {/* { CTA- Form } */}
           <form onSubmit={handleFormSubmit} className="md:w-1/2">
             <div className="flex flex-col md:flex-row md:space-x-2 sm-only:space-y-2">
-              <InputText inputTextOptions={inputTextOptions} />
+              <InputField inputFieldOptions={inputTextOptions} />
 
               <button className="rounded-lg bg-mgLight-secondary px-5 py-2.5 text-center text-lg font-bold text-white shadow-sm shadow-mgLight-base-100 hover:ring-2 hover:ring-mgLight-base-100  focus:outline-none lg:px-12">
                 Join
