@@ -11,7 +11,10 @@ import {
 } from '../../services';
 
 // Fetching Data from db API
-let basePostsURL = 'http://localhost:3004/posts';
+// local-server
+// let basePostsURL = 'http://localhost:3004/posts';
+// Live-server
+let basePostsURL = 'https://jsonplaceholder.typicode.com/posts';
 
 export const fetchPosts = () => {
   return async (dispatch: Dispatch<PostsActions>) => {
