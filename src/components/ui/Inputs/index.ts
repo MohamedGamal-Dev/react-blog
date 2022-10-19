@@ -1,2 +1,2 @@
 export * from './InputText';
-// export * from './InputText.types';
+export * from './InputText.types';
