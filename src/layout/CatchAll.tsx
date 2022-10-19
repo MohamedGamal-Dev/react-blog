@@ -1,8 +1,6 @@
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { CardFrame } from '../components';
 function CatchAll() {
-  // const navigate = useNavigate();
-
   return (
     <>
       <CardFrame>

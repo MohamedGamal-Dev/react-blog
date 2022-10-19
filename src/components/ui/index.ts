@@ -1,2 +1,2 @@
-export * from './inputs';
 export * from './card';
+export * from './input-field';
