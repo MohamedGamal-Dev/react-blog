@@ -8,11 +8,12 @@ const HeaderContainer = () => {
       {/* {===-> HEADER <-===} */}
       <div
         id="header-container"
-        className="mb-4 flex flex-col space-y-4 md:mb-10"
+        className="flex min-h-screen flex-col justify-between space-y-4 bg-gradient-to-t from-mgLight-secondary/50 to-mgLight-base-100 "
       >
         <HeaderNav />
 
         <HeaderHeroSection />
+
         <HeaderNewsletter />
       </div>
     </>
