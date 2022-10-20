@@ -4,26 +4,43 @@ import { CardFrameProps } from './Card.types';
 export const CardFrame: React.FunctionComponent<CardFrameProps> = ({
   classNameOuter,
   classNameInner,
+  classNameFooter,
   defaultStyleOuter = true,
   defaultStyleInner = true,
+  defaultStyleFooter = true,
   frameFooter = true,
+  frameFooterContent,
   children,
 }) => {
-  const OuterDefaultStyles =
+  const outerDefaultStyles =
     'mx-auto rounded-lg  border border-mgLight-secondary/20 bg-mgLight-primary px-1 pt-1 shadow shadow-mgLight-secondary ';
-  const InnerDefaultStyles = 'rounded-lg bg-mgLight-base-100 py-4 px-6';
-
-  const defaultStylesOuter = defaultStyleOuter ? OuterDefaultStyles : null;
-  const defaultStylesInner = defaultStyleInner ? InnerDefaultStyles : null;
+  const innerDefaultStyles = 'rounded-lg bg-mgLight-base-100 py-4 px-6';
+  const footerDefaultStyles = 'rounded-lg bg-mgLight-base-100 py-4 px-6';
 
   const footerPlaceHolder = () => {
-    return <div className="py-4"></div>;
+    return (
+      <div
+        className={`${
+          defaultStyleFooter && footerDefaultStyles
+        } ${' '} ${classNameFooter}`}
+      >
+        {frameFooterContent!()}
+      </div>
+    );
   };
 
   return (
     <>
-      <div className={` ${defaultStylesOuter} ${' '} ${classNameOuter} `}>
-        <div className={` ${defaultStylesInner} ${' '} ${classNameInner} `}>
+      <div
+        className={` ${
+          defaultStyleOuter && outerDefaultStyles
+        } ${' '} ${classNameOuter} `}
+      >
+        <div
+          className={` ${
+            defaultStyleInner && innerDefaultStyles
+          } ${' '} ${classNameInner} `}
+        >
           {children}
         </div>
         {frameFooter && footerPlaceHolder()}
