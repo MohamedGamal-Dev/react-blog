@@ -1,6 +1,6 @@
 {
   "name": "react-vite-blog",
-  "version": "0.108.00",
+  "version": "0.108.08",
   "private": true,
   "type": "module",
   "scripts": {
