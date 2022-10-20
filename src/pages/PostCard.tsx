@@ -4,11 +4,12 @@ import { Link } from 'react-router-dom';
 import { useActions } from '../hooks/useActions';
 import { PostProps } from '../services';
 import PostAuthor from './PostAuthor';
+import PostDate from './PostDate';
 import PostRender from './PostRender';
 
 const PostCard: React.FunctionComponent<PostProps> = ({ post }) => {
   const { deletePost } = useActions();
-  const { userId, id, title, body } = post;
+  const { userId, id, title, body, date } = post;
 
   const handleDeleteClick = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -26,7 +27,6 @@ const PostCard: React.FunctionComponent<PostProps> = ({ post }) => {
       <>
         {/* { MAIN POST-CARD Frame } */}
         <div className="mx-auto rounded-lg  border border-mgLight-secondary/20 bg-mgLight-primary px-1 pt-1 shadow shadow-mgLight-secondary ">
-          
           <div className="rounded-lg bg-mgLight-base-100 py-4 px-6">
             {/* { *** TITLE && POST OPTIONS *** } */}
             <div className="flex items-center justify-between">
@@ -60,8 +60,8 @@ const PostCard: React.FunctionComponent<PostProps> = ({ post }) => {
                 <PostAuthor userId={userId} />
               </div>
               <div className="text-sm font-light text-mgLight-neutral ">
-                {/* { date-feature-placeholder } */}
-                Feb 02, 2022
+                {/* { *** DATE *** } */}
+                <PostDate timestamp={date} />
               </div>
             </div>
 
