@@ -54,14 +54,14 @@ const HeaderNavbar: React.FunctionComponent = () => {
     return (
       <>
         <nav className="bg-transparent px-2 py-2.5 sm:px-4">
-          <div className="container mx-auto flex flex-wrap items-center justify-between">
+          <div className="container mx-auto flex flex-wrap items-center justify-between sm-only:relative">
             {uiLogo()}
 
             {/* HamB - Button - UI-Menu>> */}
             <button
               data-collapse-toggle="navbar-hamburger"
               type="button"
-              className="ml-3 inline-flex items-center rounded-lg p-2 text-2xl  hover:text-mgLight-secondary focus:outline-none md:hidden  "
+              className="ml-3 inline-flex items-center rounded-lg p-2 text-2xl  hover:text-mgLight-secondary focus:outline-none md:hidden"
               aria-controls="navbar-hamburger"
               aria-expanded="false"
               onClick={handleClick}
@@ -81,7 +81,7 @@ const HeaderNavbar: React.FunctionComponent = () => {
               id="navbar-hamburger"
             >
               {/* NAV LINKS */}
-              <div className="mt-4 flex flex-col rounded-lg border border-mgLight-accent/10 bg-mgLight-base-100 p-4 md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-transparent md:text-sm md:font-medium">
+              <div className="sm-only: mt-4 flex flex-col rounded-lg border border-mgLight-accent/10 bg-mgLight-base-100 p-4 md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-transparent md:text-sm md:font-medium sm-only:absolute sm-only:z-50 sm-only:right-0 sm-only:w-full ">
                 {pages.map((page) => {
                   const { title, to } = page;
 
