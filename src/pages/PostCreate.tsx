@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { nanoid } from 'nanoid';
 import { useNavigate } from 'react-router-dom';
 
 import { useActions } from '../hooks/useActions';
@@ -23,14 +22,13 @@ const PostCreate: React.FunctionComponent = () => {
   const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    let newPost = {
+    let postInputs = {
       userId,
-      id: nanoid(),
       title,
       body,
     };
 
-    createPost(newPost);
+    createPost(postInputs);
     setElementState(initialState);
     navigate('/');
   };
