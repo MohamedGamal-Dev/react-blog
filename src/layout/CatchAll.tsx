@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { CardFrame } from '../components';
-function CatchAll() {
+
+const CatchAll: React.FunctionComponent = () => {
   return (
     <>
       <CardFrame>
@@ -14,6 +15,6 @@ function CatchAll() {
       </CardFrame>
     </>
   );
-}
+};
 
 export default CatchAll;

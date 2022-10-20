@@ -61,7 +61,7 @@ const PostCard: React.FunctionComponent<PostProps> = ({ post }) => {
               </div>
               <div className="text-sm font-light text-mgLight-neutral ">
                 {/* { *** DATE *** } */}
-                <PostDate timestamp={date} />
+                <PostDate timestamp={date!} />
               </div>
             </div>
 

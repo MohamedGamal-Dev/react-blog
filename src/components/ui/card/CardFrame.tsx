@@ -15,7 +15,8 @@ export const CardFrame: React.FunctionComponent<CardFrameProps> = ({
   const outerDefaultStyles =
     'mx-auto rounded-lg  border border-mgLight-secondary/20 bg-mgLight-primary px-1 pt-1 shadow shadow-mgLight-secondary ';
   const innerDefaultStyles = 'rounded-lg bg-mgLight-base-100 py-4 px-6';
-  const footerDefaultStyles = 'rounded-lg bg-mgLight-base-100 py-4 px-6';
+  const footerDefaultStyles =
+    'flex items-center justify-between rounded-bl-lg rounded-br-lg bg-mgLight-primary py-3 px-6';
 
   const footerPlaceHolder = () => {
     return (
@@ -24,7 +25,7 @@ export const CardFrame: React.FunctionComponent<CardFrameProps> = ({
           defaultStyleFooter && footerDefaultStyles
         } ${' '} ${classNameFooter}`}
       >
-        {frameFooterContent!()}
+        {frameFooterContent && frameFooterContent()}
       </div>
     );
   };
@@ -43,7 +44,7 @@ export const CardFrame: React.FunctionComponent<CardFrameProps> = ({
         >
           {children}
         </div>
-        {frameFooter && footerPlaceHolder()}
+        {frameFooter ? footerPlaceHolder() : null}
       </div>
     </>
   );
