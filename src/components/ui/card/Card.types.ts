@@ -11,12 +11,6 @@ export interface CardFrameProps {
   // comp?: JSX.Element | React.ReactNode | React.FunctionComponent;
 }
 
-export interface CardSubHeaderProps {
-  author?: JSX.Element | React.ReactNode;
-  date?: JSX.Element | React.ReactNode;
-  children?: React.ReactNode;
-}
-
 export interface CardHeaderProps {
   headerOptions: HeaderOptions;
   heading: string;
@@ -41,4 +35,23 @@ export type HeaderOptions = {
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => void;
   addOption?: () => JSX.Element;
+};
+
+export interface CardSubHeaderProps {
+  CardSubHeaderOptions: CardSubHeaderOptions;
+  children?: React.ReactNode;
+}
+
+export interface CardSubHeaderOptions {
+  optionsStatus: boolean;
+  addOption?: () => JSX.Element;
+  author: CardSubHeaderOption;
+  date: CardSubHeaderOption;
+}
+
+export type CardSubHeaderOption = {
+  status: boolean;
+  styles?: boolean;
+  class?: string;
+  render?: JSX.Element | React.ReactNode;
 };
