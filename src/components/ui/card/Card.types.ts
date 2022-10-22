@@ -1,10 +1,10 @@
 export interface CardFrameProps {
-  classNameOuter?: string;
-  classNameInner?: string;
-  classNameFooter?: string;
-  defaultStyleOuter?: boolean;
-  defaultStyleInner?: boolean;
-  defaultStyleFooter?: boolean;
+  outerClass?: string;
+  outerStyle?: boolean;
+  innerClass?: string;
+  innerStyle?: boolean;
+  footerClass?: string;
+  footerStyle?: boolean;
   frameFooter?: boolean;
   frameFooterContent?: () => JSX.Element;
   children?: React.ReactNode;
@@ -18,10 +18,27 @@ export interface CardSubHeaderProps {
 }
 
 export interface CardHeaderProps {
+  headerOptions: HeaderOptions;
+  heading: string;
+  headingLink?: boolean;
+  headingStyles?: boolean;
+  headingClass?: string;
   id?: string;
-  title?: string;
-  handleDeleteClick?: (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => void;
   children?: React.ReactNode;
 }
+
+export type HeaderOptions = {
+  optionsStatus: boolean;
+
+  editStatus?: boolean;
+  editStyles?: boolean;
+  editClass?: string;
+
+  deleteStatus?: boolean;
+  deleteStyles?: boolean;
+  deleteClass?: string;
+  handleDelete?: (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => void;
+  addOption?: () => JSX.Element;
+};

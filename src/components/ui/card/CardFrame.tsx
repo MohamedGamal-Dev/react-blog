@@ -2,12 +2,12 @@ import React from 'react';
 import { CardFrameProps } from './Card.types';
 
 export const CardFrame: React.FunctionComponent<CardFrameProps> = ({
-  classNameOuter,
-  classNameInner,
-  classNameFooter,
-  defaultStyleOuter = true,
-  defaultStyleInner = true,
-  defaultStyleFooter = true,
+  outerClass,
+  innerClass,
+  footerClass,
+  outerStyle = true,
+  innerStyle = true,
+  footerStyle = true,
   frameFooter = true,
   frameFooterContent,
   children,
@@ -22,8 +22,8 @@ export const CardFrame: React.FunctionComponent<CardFrameProps> = ({
     return (
       <div
         className={`${
-          defaultStyleFooter && footerDefaultStyles
-        } ${' '} ${classNameFooter}`}
+          footerStyle && footerDefaultStyles
+        } ${' '} ${footerClass}`}
       >
         {frameFooterContent && frameFooterContent()}
       </div>
@@ -33,14 +33,12 @@ export const CardFrame: React.FunctionComponent<CardFrameProps> = ({
   return (
     <>
       <div
-        className={` ${
-          defaultStyleOuter && outerDefaultStyles
-        } ${' '} ${classNameOuter} `}
+        className={` ${outerStyle && outerDefaultStyles} ${' '} ${outerClass} `}
       >
         <div
           className={` ${
-            defaultStyleInner && innerDefaultStyles
-          } ${' '} ${classNameInner} `}
+            innerStyle && innerDefaultStyles
+          } ${' '} ${innerClass} `}
         >
           {children}
         </div>
