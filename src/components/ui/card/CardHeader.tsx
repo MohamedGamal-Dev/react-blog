@@ -3,25 +3,17 @@ import { Link } from 'react-router-dom';
 import { CardHeaderProps } from './Card.types';
 
 export const CardHeader: React.FunctionComponent<CardHeaderProps> = ({
-  headerOptions = { optionsStatus: true },
-  heading,
-  headingLink = true,
-  headingStyles,
-  headingClass,
+  headerOptions = {
+    optionsStatus: true,
+    heading: { status: true, link: true, style: true },
+    edit: { status: true, style: true },
+    delete: { status: true, style: true },
+  },
   id,
   children,
 }) => {
-  const {
-    optionsStatus,
-    editStatus,
-    editStyles = true,
-    editClass,
-    deleteStatus,
-    deleteStyles,
-    deleteClass,
-    handleDelete,
-    addOption,
-  } = headerOptions;
+  const { optionsStatus, heading, edit, deleteOption, addOption } =
+    headerOptions;
 
   const renderHeaderOptions = () => {
     let editDefaultStyles = `transform cursor-pointer rounded bg-mgLight-accent px-3 py-1 text-sm font-bold text-white transition-colors duration-200 hover:bg-mgLight-success`;
@@ -31,24 +23,24 @@ export const CardHeader: React.FunctionComponent<CardHeaderProps> = ({
       <>
         {/* { *** OPTIONS *** } */}
         <div className="flex items-center space-x-1">
-          {editStatus && (
+          {edit!.status && (
             <Link
               to={`/post/${id}/edit`}
-              className={`${
-                editStyles && editDefaultStyles
-              }  ${' '}  ${editClass}`}
+              className={`${edit!.style && editDefaultStyles}  ${' '}  ${
+                edit!.class
+              }`}
             >
               Edit
             </Link>
           )}
 
           {/* { *** Button UI-Component place holder *** } */}
-          {deleteStatus && (
+          {deleteOption!.status && (
             <button
-              onClick={handleDelete}
+              onClick={deleteOption!.handleClick}
               className={`${
-                deleteStyles && deleteDefaultStyles
-              }  ${' '}  ${deleteClass}`}
+                deleteOption!.style && deleteDefaultStyles
+              }  ${' '}  ${deleteOption!.class}`}
             >
               Delete
             </button>
@@ -61,22 +53,22 @@ export const CardHeader: React.FunctionComponent<CardHeaderProps> = ({
 
   let headingDefaultStyles = `text-2xl font-bold text-mgLight-neutral hover:text-mgLight-accent hover:underline`;
 
-  let headingOption = headingLink ? (
+  let headingOption = heading!.link ? (
     <Link
       to={`/post/${id}`}
-      className={`${
-        headingStyles && headingDefaultStyles
-      }  ${' '}  ${headingClass}`}
+      className={`${heading!.style && headingDefaultStyles}  ${' '}  ${
+        heading!.class
+      }`}
     >
-      {heading}
+      {heading!.text}
     </Link>
   ) : (
     <div
-      className={`${
-        headingStyles && headingDefaultStyles
-      }  ${' '}  ${headingClass}`}
+      className={`${heading!.style && headingDefaultStyles}  ${' '}  ${
+        heading!.class
+      }`}
     >
-      {heading}
+      {heading!.text}
     </div>
   );
 
@@ -84,7 +76,7 @@ export const CardHeader: React.FunctionComponent<CardHeaderProps> = ({
     <>
       {/* { *** HEADING *** } */}
       <div className="flex items-center justify-between">
-        {headingLink && headingOption}
+        {heading!.status && headingOption}
         {/* { *** OPTIONS *** } */}
         {optionsStatus && renderHeaderOptions()}
       </div>

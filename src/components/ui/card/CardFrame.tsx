@@ -20,11 +20,11 @@ export const CardFrame: React.FunctionComponent<CardFrameProps> = ({
   const footerPlaceHolder = () => {
     return (
       <div
-        className={`${footer.style && footerDefaultStyles} ${' '} ${
-          footer.class
+        className={`${footer!.style && footerDefaultStyles} ${' '} ${
+          footer!.class
         }`}
       >
-        {footer.content && footer.content!()}
+        {footer!.content && footer!.content!()}
       </div>
     );
   };
@@ -32,18 +32,18 @@ export const CardFrame: React.FunctionComponent<CardFrameProps> = ({
   return (
     <>
       <div
-        className={` ${outer.style && outerDefaultStyles} ${' '} ${
-          outer.class
+        className={` ${outer!.style && outerDefaultStyles} ${' '} ${
+          outer!.class
         } `}
       >
         <div
-          className={` ${inner.style && innerDefaultStyles} ${' '} ${
-            inner.class
+          className={` ${inner!.style && innerDefaultStyles} ${' '} ${
+            inner!.class
           } `}
         >
           {children}
         </div>
-        {footer.status ? footerPlaceHolder() : null}
+        {footer!.status ? footerPlaceHolder() : null}
       </div>
     </>
   );
