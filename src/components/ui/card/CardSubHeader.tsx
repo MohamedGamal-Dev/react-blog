@@ -2,14 +2,14 @@ import React from 'react';
 import { CardSubHeaderProps } from './Card.types';
 
 export const CardSubHeader: React.FunctionComponent<CardSubHeaderProps> = ({
-  CardSubHeaderOptions = {
+  SubHeaderOptions = {
     optionsStatus: true,
     author: { status: true, styles: true },
     date: { status: true, styles: true },
   },
   children,
 }) => {
-  const { optionsStatus, addOption, author, date } = CardSubHeaderOptions;
+  const { optionsStatus, addOption, author, date } = SubHeaderOptions;
 
   const options = () => {
     let authorDefaultClass = `font-serif text-sm font-medium text-mgLight-accent`;
