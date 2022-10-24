@@ -2,48 +2,65 @@ import React from 'react';
 import { CardFrameProps } from './Card.types';
 
 export const CardFrame: React.FunctionComponent<CardFrameProps> = ({
-  frameOptions = {
-    outer: { style: true },
-    inner: { style: true },
-    footer: { status: true, style: true },
-  },
+  frameOuterStyle = true,
+  frameOuterClass,
+
+  frameInnerStyle = true,
+  frameInnerClass,
+
+  frameFooterStatus = true,
+  frameFooterStyle = true,
+  frameFooterClass,
+  frameFooterRender,
   children,
 }) => {
-  const { outer, inner, footer } = frameOptions;
+  // -----------------------------
+  // === (BOX) FRAME - STYLES ===
+  const outerStyles = {
+    default:
+      'mx-auto rounded-lg  border border-mgLight-secondary/20 bg-mgLight-primary px-1 pt-1 shadow shadow-mgLight-secondary ',
+  };
+  const innerStyles = {
+    default: 'rounded-lg bg-mgLight-base-100 py-4 px-6',
+  };
+  const footerStyles = {
+    default:
+      'flex items-center justify-between rounded-bl-lg rounded-br-lg bg-mgLight-primary py-3 px-6',
+  };
+  // -----------------------------
 
-  const outerDefaultStyles =
-    'mx-auto rounded-lg  border border-mgLight-secondary/20 bg-mgLight-primary px-1 pt-1 shadow shadow-mgLight-secondary ';
-  const innerDefaultStyles = 'rounded-lg bg-mgLight-base-100 py-4 px-6';
-  const footerDefaultStyles =
-    'flex items-center justify-between rounded-bl-lg rounded-br-lg bg-mgLight-primary py-3 px-6';
-
-  const footerPlaceHolder = () => {
+  // === (BOX) FRAME - FOOTER ===
+  const renderFooter = () => {
     return (
       <div
-        className={`${footer!.style && footerDefaultStyles} ${' '} ${
-          footer!.class
-        }`}
+        className={`${
+          frameFooterStyle && footerStyles.default
+        } ${' '} ${frameFooterClass}`}
       >
-        {footer!.content && footer!.content!()}
+        <>{frameFooterRender && frameFooterRender()}</>
       </div>
     );
   };
 
+  // === * (BOX) FRAME (v1.6)* ===
+  // -----------------------------
   return (
     <>
       <div
-        className={` ${outer!.style && outerDefaultStyles} ${' '} ${
-          outer!.class
-        } `}
+        className={`${
+          frameOuterStyle && outerStyles.default
+        } ${' '} ${frameOuterClass} `}
       >
         <div
-          className={` ${inner!.style && innerDefaultStyles} ${' '} ${
-            inner!.class
-          } `}
+          className={`${
+            frameInnerStyle && innerStyles.default
+          } ${' '} ${frameInnerClass} `}
         >
           {children}
         </div>
-        {footer!.status ? footerPlaceHolder() : null}
+
+        {/* { => FOOTER OPTION <= } */}
+        {frameFooterStatus && renderFooter()}
       </div>
     </>
   );

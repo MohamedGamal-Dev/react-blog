@@ -2,46 +2,77 @@ import React from 'react';
 import { CardSubHeaderProps } from './Card.types';
 
 export const CardSubHeader: React.FunctionComponent<CardSubHeaderProps> = ({
-  SubHeaderOptions = {
-    optionsStatus: true,
-    author: { status: true, styles: true },
-    date: { status: true, styles: true },
-  },
+  subHeaderStatus = true,
+  subHeaderStyle = true,
+  subHeaderClass,
+
+  authorStatus = true,
+  authorStyle = true,
+  authorClass,
+  authorRender,
+
+  dateStatus = true,
+  dateStyle = true,
+  dateClass,
+  dateRender,
+  subHeaderOptionAdd,
   children,
 }) => {
-  const { optionsStatus, addOption, author, date } = SubHeaderOptions;
+  // -----------------------------
+  // === SUB-HEADING - STYLES ===
+  const subHeaderStyles = {
+    default: `flex items-start space-x-2 border-b-2 border-mgLight-secondary pb-1`,
+  };
+  const authorStyles = {
+    default: `font-serif text-sm font-medium text-mgLight-accent`,
+  };
+  const dateStyles = {
+    default: `text-sm font-light text-mgLight-neutral`,
+  };
+  // -----------------------------
 
+  // === SUB-HEADING - OPTIONS ===
   const options = () => {
-    let authorDefaultClass = `font-serif text-sm font-medium text-mgLight-accent`;
-    let dateDefaultClass = `text-sm font-light text-mgLight-neutral`;
     return (
       <>
-        {/* { *** Author *** } */}
-        {author.status && (
-          <div className={` ${authorDefaultClass} ${` `} ${author.class} `}>
-            {author.render}
+        {/* { -> Author <- } */}
+        {authorStatus && (
+          <div
+            className={` ${
+              authorStyle && authorStyles.default
+            } ${` `} ${authorClass} `}
+          >
+            {authorRender}
           </div>
         )}
 
-        {/* { *** DATE *** } */}
-        {date.status && (
-          <div className={` ${dateDefaultClass} ${` `} ${date.class} `}>
-            {date.render}
+        {/* { -> DATE <- } */}
+        {dateStatus && (
+          <div
+            className={` ${
+              dateStyle && dateStyles.default
+            } ${` `} ${dateClass} `}
+          >
+            {dateRender}
           </div>
         )}
 
-        {addOption && <>{addOption()}</>}
+        {/* { -> ADD MORE OPTIONS <- } */}
+        <>{subHeaderOptionAdd && subHeaderOptionAdd()}</>
       </>
     );
   };
 
+  // === SUB-HEADING (v1.6) ===
+  // --------------------------
   return (
-    <>
-      {/* { *** Author && DATE *** } */}
-      <div className="flex items-start space-x-2 border-b-2 border-mgLight-secondary pb-1">
-        {optionsStatus && options()}
-        {children ? children : null}
-      </div>
-    </>
+    <div
+      className={` ${
+        subHeaderStyle && subHeaderStyles.default
+      } ${` `} ${subHeaderClass} `}
+    >
+      {subHeaderStatus && options()}
+      {children || null}
+    </div>
   );
 };
