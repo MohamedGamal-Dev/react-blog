@@ -1,15 +1,11 @@
 export interface InputFieldUiProps {
-  inputFieldOptions: InputFieldOptionsType;
-}
-
-export type InputFieldOptionsType = {
-  type: string;
-  InputValue: string;
-  InputName: string;
+  inputFieldType: string;
+  inputFieldName: string;
+  inputFieldValue: string;
   onInputChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  classNames?: string;
-  defaultStyle?: boolean;
-  required?: boolean;
-  id?: string;
-  placeholder?: string;
-};
+  inputFieldClass?: string;
+  inputFieldStyle?: boolean;
+  inputFieldRequired?: boolean;
+  inputFieldCssId?: string;
+  inputFieldPlaceholder?: string;
+}
