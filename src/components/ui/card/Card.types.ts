@@ -1,57 +1,62 @@
-export interface CardFrameProps {
-  outerClass?: string;
-  outerStyle?: boolean;
-  innerClass?: string;
-  innerStyle?: boolean;
-  footerClass?: string;
-  footerStyle?: boolean;
-  frameFooter?: boolean;
-  frameFooterContent?: () => JSX.Element;
+export interface CardProps
+  extends CardFrameProps,
+    CardHeaderProps,
+    CardSubHeaderProps {
   children?: React.ReactNode;
-  // comp?: JSX.Element | React.ReactNode | React.FunctionComponent;
+}
+
+export interface CardFrameProps {
+  frameOuterStyle?: boolean;
+  frameOuterClass?: string;
+
+  frameInnerStyle?: boolean;
+  frameInnerClass?: string;
+
+  frameFooterStatus?: boolean;
+  frameFooterStyle?: boolean;
+  frameFooterClass?: string;
+  frameFooterRender?: () => JSX.Element;
+
+  children?: React.ReactNode;
 }
 
 export interface CardHeaderProps {
-  headerOptions: HeaderOptions;
-  heading: string;
+  headerOptions?: boolean;
+  headingStatus?: boolean;
+  headingText?: string;
   headingLink?: boolean;
-  headingStyles?: boolean;
+  headingStyle?: boolean;
   headingClass?: string;
-  id?: string;
-  children?: React.ReactNode;
-}
 
-export type HeaderOptions = {
-  optionsStatus: boolean;
-
+  targetId?: string;
   editStatus?: boolean;
-  editStyles?: boolean;
+  editStyle?: boolean;
   editClass?: string;
 
   deleteStatus?: boolean;
-  deleteStyles?: boolean;
+  deleteStyle?: boolean;
   deleteClass?: string;
-  handleDelete?: (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => void;
-  addOption?: () => JSX.Element;
-};
+  onDeleteClick?: () => void;
 
-export interface CardSubHeaderProps {
-  CardSubHeaderOptions: CardSubHeaderOptions;
+  headerOptionAdd?: () => JSX.Element;
   children?: React.ReactNode;
 }
 
-export interface CardSubHeaderOptions {
-  optionsStatus: boolean;
-  addOption?: () => JSX.Element;
-  author: CardSubHeaderOption;
-  date: CardSubHeaderOption;
-}
+export interface CardSubHeaderProps {
+  subHeaderStatus?: boolean;
+  subHeaderStyle?: boolean;
+  subHeaderClass?: string;
 
-export type CardSubHeaderOption = {
-  status: boolean;
-  styles?: boolean;
-  class?: string;
-  render?: JSX.Element | React.ReactNode;
-};
+  authorStatus?: boolean;
+  authorStyle?: boolean;
+  authorClass?: string;
+  authorRender?: JSX.Element | React.ReactNode;
+
+  dateStatus?: boolean;
+  dateStyle?: boolean;
+  dateClass?: string;
+  dateRender?: JSX.Element | React.ReactNode;
+
+  subHeaderOptionAdd?: () => JSX.Element;
+  children?: React.ReactNode;
+}
