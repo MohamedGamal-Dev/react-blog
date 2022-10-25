@@ -1,9 +1,48 @@
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import reducers from '../reducers';
-import { RootState } from './storeTypes';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+// import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
 
-export const store = createStore(reducers, {}, applyMiddleware(thunk));
+import reducers from '../reducers';
+// import { RootState } from './storeTypes';
+
+// ------------------------------------------------------------
+// === persistantState STORE - redux-persist-Edition===
+// ------------------------------------------------------------
+
+const composeEnhancers = composeWithDevTools({});
+const persistConfig = {
+  key: 'root',
+  storage,
+  // stateReconciler: autoMergeLevel2
+  // whitelist: ['reducers'],
+};
+const persistedReducer = persistReducer(persistConfig, reducers);
+
+export let store = createStore(
+  persistedReducer,
+  {},
+  composeEnhancers(applyMiddleware(thunk))
+);
+export let persistor = persistStore(store);
+
+// ------------------------------------------------------------
+// === Default STORE ===
+// ------------------------------------------------------------
+
+// const composeEnhancers = composeWithDevTools({});
+
+// export const store = createStore(
+//   reducers,
+//   {},
+//   composeEnhancers(applyMiddleware(thunk))
+// );
+
+// ------------------------------------------------------------
+// === persistantState STORE - Function-Edition===
+// ------------------------------------------------------------
 
 // function saveToLocalStorage(state: RootState) {
 //   try {
@@ -25,9 +64,12 @@ export const store = createStore(reducers, {}, applyMiddleware(thunk));
 //   }
 // }
 
+// const composeEnhancers = composeWithDevTools({});
+
 // export const store = createStore(
 //   reducers,
 //   loadFromLocalStorage(),
+//   // composeEnhancers(applyMiddleware(thunk))
 //   applyMiddleware(thunk)
 // );
 
