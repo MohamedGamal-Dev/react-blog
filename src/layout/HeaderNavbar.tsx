@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { FaMonero } from 'react-icons/fa';
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
+import { navPages } from '../routes';
+import { logoText } from './consts';
 
 const HeaderNavbar: React.FunctionComponent = () => {
   const [elToggle, setElToggle] = useState(true);
@@ -16,25 +18,6 @@ const HeaderNavbar: React.FunctionComponent = () => {
     <AiOutlineClose className="text-mgLight-primary" />
   );
 
-  const pages = [
-    {
-      title: 'home',
-      to: '/',
-    },
-    {
-      title: 'New Post',
-      to: '/post',
-    },
-    {
-      title: 'About',
-      to: '/about',
-    },
-    {
-      title: 'Error',
-      to: '/404',
-    },
-  ];
-
   const uiLogo = () => {
     return (
       <div className="flex flex-row pt-2">
@@ -44,7 +27,7 @@ const HeaderNavbar: React.FunctionComponent = () => {
           to="/"
           className={` decoration-brightRed decoration-3 font-sans text-2xl font-bold text-mgLight-primary hover:underline hover:decoration-mgLight-secondary`}
         >
-          mBLOG
+          {logoText}
         </NavLink>
       </div>
     );
@@ -81,8 +64,8 @@ const HeaderNavbar: React.FunctionComponent = () => {
               id="navbar-hamburger"
             >
               {/* NAV LINKS */}
-              <div className="sm-only: mt-4 flex flex-col rounded-lg border border-mgLight-accent/10 bg-mgLight-base-100 p-4 md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-transparent md:text-sm md:font-medium sm-only:absolute sm-only:z-50 sm-only:right-0 sm-only:w-full ">
-                {pages.map((page) => {
+              <div className="sm-only: mt-4 flex flex-col rounded-lg border border-mgLight-accent/10 bg-mgLight-base-100 p-4 md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-transparent md:text-sm md:font-medium sm-only:absolute sm-only:right-0 sm-only:z-50 sm-only:w-full ">
+                {navPages.map((page) => {
                   const { title, to } = page;
 
                   return (

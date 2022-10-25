@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
 import { InputField } from '../components';
+import {
+  newsLetterBtnSubmit,
+  newsLetterH1,
+  newsLetterH2,
+  newsLetterInputPlaceholder,
+} from './consts';
 
 const HeaderNewsletter: React.FunctionComponent = () => {
   const initialState = {
@@ -32,10 +38,10 @@ const HeaderNewsletter: React.FunctionComponent = () => {
           {/* { CTA } */}
           <blockquote className="flex flex-col items-center md:w-1/2">
             <div className="text-3xl font-bold italic text-mgLight-base-100 md:text-4xl">
-              "STAY TUNED"
+              {newsLetterH1}
             </div>
             <div className="text-lg italic text-mgLight-base-100 md:text-xl md:font-semibold lg:text-2xl ">
-              "Don't miss out on any action !!!"
+              {newsLetterH2}
             </div>
           </blockquote>
           {/* { CTA- Form } */}
@@ -46,11 +52,11 @@ const HeaderNewsletter: React.FunctionComponent = () => {
                 inputFieldName={'newsLetterEmail'}
                 inputFieldValue={newsLetterEmail}
                 onInputChange={handleInputChange}
-                inputFieldPlaceholder={'Your Email address'}
+                inputFieldPlaceholder={newsLetterInputPlaceholder}
               />
 
               <button className="rounded-lg bg-mgLight-secondary px-5 py-2.5 text-center text-lg font-bold text-white shadow-sm shadow-mgLight-base-100 hover:ring-2 hover:ring-mgLight-base-100  focus:outline-none lg:px-12">
-                Join
+                {newsLetterBtnSubmit}
               </button>
             </div>
           </form>
