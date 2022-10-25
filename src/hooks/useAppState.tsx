@@ -16,11 +16,19 @@ export const useAppState = () => {
     return post!;
   };
 
+  const getUserById = (userId: string) => {
+    let user = users.find((user) => {
+      return user.id === userId;
+    });
+    return user!;
+  };
+
   return {
     users: users!,
     posts: posts,
     postsLoading: loading,
     postsError: error,
     getPostById: getPostById,
+    getUserById: getUserById,
   };
 };
