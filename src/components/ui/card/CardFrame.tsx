@@ -12,6 +12,7 @@ export const CardFrame: React.FunctionComponent<CardFrameProps> = ({
   frameFooterStyle = true,
   frameFooterClass,
   frameFooterRender,
+  frameFooterRenderComponent,
   children,
 }) => {
   // -----------------------------
@@ -37,7 +38,12 @@ export const CardFrame: React.FunctionComponent<CardFrameProps> = ({
           frameFooterStyle && footerStyles.default
         } ${' '} ${frameFooterClass}`}
       >
-        <>{frameFooterRender && frameFooterRender()}</>
+        {
+          <>
+            {frameFooterRenderComponent ||
+              (frameFooterRender && frameFooterRender())}
+          </>
+        }
       </div>
     );
   };

@@ -11,6 +11,7 @@ export const Card: React.FunctionComponent<CardProps> = ({
   frameFooterStyle,
   frameFooterClass,
   frameFooterRender,
+  frameFooterRenderComponent,
 
   headerOptions,
   headingStatus,
@@ -40,8 +41,16 @@ export const Card: React.FunctionComponent<CardProps> = ({
   dateRender,
   subHeaderOptionAdd,
 
+  bodyStyle = true,
+  bodyClass,
   children,
 }) => {
+  // -----------------------------
+  // === MAIN BODY - STYLES ===
+  const bodyStyles = {
+    default: `mt-2 text-mgLight-neutral/90`,
+  };
+
   return (
     <>
       <CardFrame
@@ -53,6 +62,7 @@ export const Card: React.FunctionComponent<CardProps> = ({
         frameFooterStyle={frameFooterStyle}
         frameFooterClass={frameFooterClass}
         frameFooterRender={frameFooterRender}
+        frameFooterRenderComponent={frameFooterRenderComponent}
       >
         <CardHeader
           headerOptions={headerOptions}
@@ -84,7 +94,11 @@ export const Card: React.FunctionComponent<CardProps> = ({
           dateRender={dateRender}
           subHeaderOptionAdd={subHeaderOptionAdd}
         />
-        {children}
+        <div
+          className={`${bodyStyle && bodyStyles.default}  ${' '}  ${bodyClass}`}
+        >
+          {children}
+        </div>
       </CardFrame>
     </>
   );

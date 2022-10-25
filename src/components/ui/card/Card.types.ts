@@ -2,6 +2,8 @@ export interface CardProps
   extends CardFrameProps,
     CardHeaderProps,
     CardSubHeaderProps {
+  bodyStyle?: boolean;
+  bodyClass?: string;
   children?: React.ReactNode;
 }
 
@@ -16,6 +18,7 @@ export interface CardFrameProps {
   frameFooterStyle?: boolean;
   frameFooterClass?: string;
   frameFooterRender?: () => JSX.Element;
+  frameFooterRenderComponent?: JSX.Element | React.ReactNode;
 
   children?: React.ReactNode;
 }
