@@ -13,6 +13,7 @@ export const Card: React.FunctionComponent<CardProps> = ({
   frameFooterRender,
   frameFooterRenderComponent,
 
+  headerStatus = true,
   headerOptions,
   headingStatus,
   headingText,
@@ -64,22 +65,25 @@ export const Card: React.FunctionComponent<CardProps> = ({
         frameFooterRender={frameFooterRender}
         frameFooterRenderComponent={frameFooterRenderComponent}
       >
-        <CardHeader
-          headerOptions={headerOptions}
-          headingStatus={headingStatus}
-          headingText={headingText}
-          headingLink={headingLink}
-          headingStyle={headingStyle}
-          headingClass={headingClass}
-          targetId={targetId}
-          editStatus={editStatus}
-          editStyle={editStyle}
-          editClass={editClass}
-          deleteStatus={deleteStatus}
-          deleteStyle={deleteStyle}
-          deleteClass={deleteClass}
-          onDeleteClick={onDeleteClick}
-        />
+        {headerStatus && (
+          <CardHeader
+            headerOptions={headerOptions}
+            headingStatus={headingStatus}
+            headingText={headingText}
+            headingLink={headingLink}
+            headingStyle={headingStyle}
+            headingClass={headingClass}
+            targetId={targetId}
+            editStatus={editStatus}
+            editStyle={editStyle}
+            editClass={editClass}
+            deleteStatus={deleteStatus}
+            deleteStyle={deleteStyle}
+            deleteClass={deleteClass}
+            onDeleteClick={onDeleteClick}
+          />
+        )}
+
         <CardSubHeader
           subHeaderStatus={subHeaderStatus}
           subHeaderStyle={subHeaderStyle}

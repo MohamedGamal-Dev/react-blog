@@ -2,6 +2,7 @@ export interface CardProps
   extends CardFrameProps,
     CardHeaderProps,
     CardSubHeaderProps {
+  headerStatus?: boolean;
   bodyStyle?: boolean;
   bodyClass?: string;
   children?: React.ReactNode;
