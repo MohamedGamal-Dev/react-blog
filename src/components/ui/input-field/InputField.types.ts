@@ -4,7 +4,7 @@ export interface InputFieldUiProps {
   inputFieldValue: string;
   onInputChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   inputFieldClass?: string;
-  inputFieldStyle?: boolean;
+  inputFieldStyle?: string;
   inputFieldRequired?: boolean;
   inputFieldCssId?: string;
   inputFieldPlaceholder?: string;

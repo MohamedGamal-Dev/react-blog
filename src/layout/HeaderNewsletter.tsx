@@ -53,6 +53,7 @@ const HeaderNewsletter: React.FunctionComponent = () => {
                 inputFieldValue={newsLetterEmail}
                 onInputChange={handleInputChange}
                 inputFieldPlaceholder={newsLetterInputPlaceholder}
+                inputFieldStyle={'light'}
               />
 
               <button className="rounded-lg bg-mgLight-secondary px-5 py-2.5 text-center text-lg font-bold text-white shadow-sm shadow-mgLight-base-100 hover:ring-2 hover:ring-mgLight-base-100  focus:outline-none lg:px-12">
