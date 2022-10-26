@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import {
@@ -15,21 +15,7 @@ import PostCreate from './pages/PostCreate';
 import PostEdit from './pages/PostEdit';
 import PostRender from './pages/PostRender';
 
-// import { useActions } from './hooks/useActions';
-// import { useAppState } from './hooks/useAppState';
-
 const App = () => {
-  // const { users, posts } = useAppState();
-
-  // const { fetchUsers, fetchPosts } = useActions();
-  // useEffect(() => {
-  //   fetchUsers();
-  //   fetchPosts();
-  // }, []);
-
-  // console.log(posts);
-  // console.log(users);
-
   return (
     <Routes>
       <Route element={<AppLayout />}>
