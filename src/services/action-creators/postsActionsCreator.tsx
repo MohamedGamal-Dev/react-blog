@@ -27,8 +27,7 @@ export const fetchPosts = () => {
     });
 
     try {
-      const response = await axios.get(`${basePostsURL}`);
-      // console.log(response);
+      const response = await axios.get(`${basePostsURL}/?_limit=5`);
       let data = response.data.map((post: PostType) => {
         return { ...post, date: formatISO(new Date()) };
       });
@@ -79,7 +78,6 @@ export const createPost = (postInputs: CreatePostType) => {
       body,
       date: formatISO(new Date()),
     };
-    console.log(newPost);
     const { data } = await axios.post(basePostsURL, newPost);
     dispatch({
       type: CreatePostActionType.CREATE_POST,
