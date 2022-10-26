@@ -4,19 +4,19 @@ export interface PostsState {
   error: null | string;
 }
 
-export type PostType = {
+export interface PostType {
   userId: string;
   id: string;
   title: string;
   body: string;
-  date?: string;
-};
+  date: string;
+}
 
-export type CreatePostType = {
+export interface CreatePostType {
   userId: string;
   title: string;
   body: string;
-};
+}
 
 // export type SortPostsType = <PostType>(post: PostType[]) => PostType[];
 
@@ -28,4 +28,8 @@ export interface PostProps {
 export interface PostDateProps {
   timestamp: string;
   children?: React.ReactNode;
+}
+export interface PostFooterProps {
+  type?: string;
+  id?: string;
 }

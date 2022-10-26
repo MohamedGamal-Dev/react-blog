@@ -28,8 +28,6 @@ const postsReducer = (
       return {
         ...state,
         posts: [...state.posts, action.payload],
-        // loading: false,
-        // error: null,
       };
 
     case DeletePostActionType.DELETE_POST:
@@ -38,8 +36,6 @@ const postsReducer = (
         posts: state.posts.filter((post) => {
           return post.id !== action.payload;
         }),
-        // loading: false,
-        // error: null,
       };
 
     case EditPostActionType.EDIT_POST:
@@ -48,8 +44,6 @@ const postsReducer = (
         posts: state.posts.map((post) => {
           return post.id === action.payload.id ? action.payload : post;
         }),
-        // loading: false,
-        // error: null,
       };
 
     default:

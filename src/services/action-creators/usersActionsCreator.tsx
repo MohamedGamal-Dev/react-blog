@@ -10,8 +10,6 @@ export const fetchUsers = () => {
   return async (dispatch: Dispatch<UsersActions>) => {
     const { data } = await axios.get(baseUsersURL);
 
-    // console.log(data, 'response');
-
     dispatch({
       type: UsersActionType.FETCH_USERS,
       payload: data,

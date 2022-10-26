@@ -13,7 +13,6 @@ import {
   PostsActions,
   PostsState,
   actionCreators,
-  // store,
   UsersState,
   UsersActions,
 } from './services/';
