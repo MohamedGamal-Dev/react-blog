@@ -66,13 +66,17 @@ export const CardSubHeader: React.FunctionComponent<CardSubHeaderProps> = ({
   // === SUB-HEADING (v1.6) ===
   // --------------------------
   return (
-    <div
-      className={` ${
-        subHeaderStyle && subHeaderStyles.default
-      } ${` `} ${subHeaderClass} `}
-    >
-      {subHeaderStatus && options()}
-      {children || null}
-    </div>
+    <>
+      {subHeaderStatus && (
+        <div
+          className={` ${
+            subHeaderStyle && subHeaderStyles.default
+          } ${` `} ${subHeaderClass} `}
+        >
+          {options()}
+          {children || null}
+        </div>
+      )}
+    </>
   );
 };
