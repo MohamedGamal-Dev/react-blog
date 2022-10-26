@@ -1,94 +1,88 @@
-import React, { useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import React from 'react';
+import { useParams } from 'react-router-dom';
 
 import { useAppState } from '../hooks/useAppState';
 import { useActions } from '../hooks/useActions';
+import { useFormState } from '../hooks/useFormState';
 import PostAuthor from './PostAuthor';
+import PostDate from './PostDate';
+import { POST_BY_ID_PROP } from '../routes';
+import { PostType } from '../services';
+import { Card, InputField, Textarea } from '../components';
+import PostFooter from './PostFooter';
 
-// import { PostType } from '../services';
-
-const PostCreate: React.FunctionComponent = () => {
+const PostEdit: React.FunctionComponent = () => {
   const { editPost } = useActions();
-  const navigate = useNavigate();
   const { postId } = useParams();
 
   const { getPostById } = useAppState();
   const post = getPostById(postId!);
 
-  const [elementState, setElementState] = useState({
+  const initialState = {
     userId: post.userId,
     id: post.id,
     title: post.title,
     body: post.body,
     date: post.date,
-  });
-  const { userId, id, title, body } = elementState;
-
-  const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    // const editedPost: PostType = { userId, id, title, body };
-
-    editPost({ ...elementState });
-    navigate(`/post/${id}`);
   };
 
-  const handleOnChange = (
-    event:
-      | React.ChangeEvent<HTMLInputElement>
-      | React.ChangeEvent<HTMLTextAreaElement>
-  ) => {
-    const { name, value } = event.target;
+  const { elementState, handleFormSubmit, handleOnChange, reset, navigate } =
+    useFormState(initialState, onFormSubmit);
+  const { userId, id, title, body, date } = elementState!;
 
-    setElementState((prevElementState) => ({
-      ...prevElementState,
-      [name]: value,
-    }));
-  };
+  function onFormSubmit() {
+    const editedPost: PostType = { userId, id, title, body, date };
+
+    editPost(editedPost);
+    navigate(POST_BY_ID_PROP(id));
+  }
 
   return (
     <>
-      <div className="mx-auto rounded-lg  border border-mgLight-secondary/20 bg-mgLight-primary px-1 pt-1 shadow shadow-mgLight-secondary ">
-        <div className="rounded-lg bg-mgLight-base-100 py-4 px-6">
-          <form onSubmit={handleFormSubmit} className="flex flex-col space-y-4">
-            <input
-              name="title"
-              value={title}
-              onChange={handleOnChange}
-              className="block w-full rounded-lg border-2 border-mgLight-secondary bg-mgLight-secondary/20 p-2.5 text-lg text-mgLight-neutral shadow-sm shadow-mgLight-warning outline-none focus:border-mgLight-primary focus:ring-mgLight-secondary"
-              placeholder="Please Enter Post Title"
-              required
-            />
+      <Card
+        frameFooterRenderComponent={<PostFooter type={'none'} />}
+        headerStatus={false}
+        subHeaderStatus={false}
+      >
+        <form onSubmit={handleFormSubmit} className="flex flex-col space-y-4">
+          <InputField
+            inputFieldType={'text'}
+            inputFieldName={'title'}
+            inputFieldValue={title}
+            onInputChange={handleOnChange}
+            inputFieldStyle={'secondary'}
+            inputFieldPlaceholder={'Please Enter Post Title'}
+            inputFieldRequired={true}
+          />
 
-            <textarea
-              name="body"
-              value={body}
-              onChange={handleOnChange}
-              rows={4}
-              className="block w-full rounded-lg border-2 border-mgLight-secondary bg-mgLight-secondary/20 
-              p-2.5 text-lg text-mgLight-neutral shadow-sm shadow-mgLight-warning outline-none focus:border-mgLight-primary focus:ring-mgLight-secondary"
-              placeholder="Please Enter Post Content"
-              required
-            ></textarea>
+          <Textarea
+            textareaName={'body'}
+            textareaValue={body}
+            onChange={handleOnChange}
+            textareaStyle={'secondary'}
+            textareaPlaceholder={'Please Enter Post Content'}
+            textareaRequired={true}
+            textareaRows={4}
+          />
 
-            <div className="font-serif text-lg font-medium text-mgLight-accent">
-              Author: <PostAuthor userId={userId} />
+          <div className={`flex flex-row items-start space-x-2`}>
+            <div
+              className={`font-serif text-sm font-medium text-mgLight-accent`}
+            >
+              Author : <PostAuthor userId={userId} />
             </div>
-            <button className="rounded-lg bg-mgLight-accent px-5 py-2.5 text-center text-lg font-bold text-white shadow-md shadow-mgLight-success hover:bg-mgLight-success hover:shadow-mgLight-accent  focus:outline-none">
-              SAVE
-            </button>
-          </form>
-        </div>
-
-        <div className="flex items-center justify-between rounded-bl-lg rounded-br-lg bg-mgLight-primary py-3 px-6">
-          <div className="flex items-center space-x-1">
-            {' '}
-            {/* { reaction-feature-placeholder } */}
+            <div className={`text-sm font-light text-mgLight-neutral`}>
+              Created : <PostDate timestamp={date!} />
+            </div>
           </div>
-        </div>
-      </div>
+
+          <button className="rounded-lg bg-mgLight-accent px-5 py-2.5 text-center text-lg font-bold text-white shadow-md shadow-mgLight-success hover:bg-mgLight-success hover:shadow-mgLight-accent focus:outline-none">
+            SAVE
+          </button>
+        </form>
+      </Card>
     </>
   );
 };
 
-export default PostCreate;
+export default PostEdit;

@@ -12,7 +12,7 @@ const PostDate: React.FunctionComponent<PostDateProps> = ({ timestamp }) => {
   }
   return (
     <>
-      <div className="block">{postPeriod}</div>
+      <span className="">{postPeriod}</span>
     </>
   );
 };
