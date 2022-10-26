@@ -75,13 +75,10 @@ export const deletePost = (id: string) => {
   };
 };
 
-// Create New Post
-export const editPost = (editedPost: PostType) => {
+// EDIT Post
+export const editPost = ({ ...args }: PostType) => {
   return async (dispatch: Dispatch<PostsActions>) => {
-    const { data } = await axios.put(
-      `${basePostsURL}/${editedPost.id}`,
-      editedPost
-    );
+    const { data } = await axios.put(`${basePostsURL}/${args.id}`, args);
 
     dispatch({
       type: EditPostActionType.EDIT_POST,

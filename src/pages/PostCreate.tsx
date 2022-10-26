@@ -6,7 +6,7 @@ import { useAppState } from '../hooks/useAppState';
 
 const PostCreate: React.FunctionComponent = () => {
   const { createPost } = useActions();
-  const { usersState } = useAppState();
+  const { users } = useAppState();
   const navigate = useNavigate();
 
   const initialState = {
@@ -48,7 +48,7 @@ const PostCreate: React.FunctionComponent = () => {
   };
 
   const renderUsersOptionList = () => {
-    return usersState.map((user) => {
+    return users.map((user) => {
       return (
         <React.Fragment key={user.id}>
           <option value={user.id}>{user.name}</option>

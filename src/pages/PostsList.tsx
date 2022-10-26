@@ -1,47 +1,54 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useAppState } from '../hooks/useAppState';
 
-import { useSelector } from '../hooks/useTypedStore';
 import { PostType } from '../services';
 import PostCard from './PostCard';
 
 const PostsList: React.FunctionComponent = () => {
-  const { posts, loading, error } = useSelector((state) => state.posts);
+  const { posts, postsLoading, postsError } = useAppState();
 
+  // ----------------------------------------
   // Sorting (POSTS) to Show New POST @ TOP
-  const sortedPosts = posts.slice().sort((one, two) => {
-    // console.log(one.date);
-    // console.log(two.date);
-    return one.date! > two.date! ? -1 : 1;
-  });
+  // PERFORMANCE TEST
+  // ----------------------------------------
+  /* Sort + Map - Variant */
 
-  // console.log(posts, '=== POSTS ===');
-  // console.log('***', sortedPosts, '***');
+  // const sortedPosts = posts.slice().sort((one, two) => {
+  //   return one.date! > two.date! ? -1 : 1;
+  // });
 
-  const renderPostsList = () => {
-    return sortedPosts.map((post: PostType) => {
-      return (
+  // const renderPostsList = () => {
+  //   return sortedPosts.map((post: PostType) => {
+  //     return (
+  //       <React.Fragment key={post.id}>
+  //         <PostCard post={post} />
+  //       </React.Fragment>
+  //     );
+  //   });
+  // };
+
+  /* FOR LOOP - Backward loop Variant  */
+  const renderLoopPostsList = (posts: PostType[]) => {
+    let postsBackLoop = [];
+    for (let i = posts.length - 1; i >= 0; i--) {
+      const post = posts[i];
+      postsBackLoop.push(
         <React.Fragment key={post.id}>
           <PostCard post={post} />
-          {/* <TestCard post={post} /> */}
         </React.Fragment>
       );
-    });
-  };
-
-  let renderPostsOption = () => {
-    return (
-      <>
-        {loading && <h4>Loading...</h4>}
-        {error && <p>Error: {error}</p>}
-        {renderPostsList()}
-      </>
-    );
+    }
+    return postsBackLoop;
   };
 
   return (
     <>
-      {/* <h2>Posts List</h2> */}
-      <div className="flex-1 flex-col space-y-4">{renderPostsOption()}</div>
+      <div className="flex-1 flex-col space-y-4">
+        {postsLoading && <h4>postsLoading...</h4>}
+        {postsError && <p>Error: {postsError}</p>}
+        {/* {renderPostsList()} */}
+        <>{renderLoopPostsList(posts)}</>
+      </div>
     </>
   );
 };
