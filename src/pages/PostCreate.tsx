@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
+import { Card, InputField, Textarea } from '../components';
+import { SelectField } from '../components/ui/select-field';
 
 import { useActions } from '../hooks/useActions';
 import { useAppState } from '../hooks/useAppState';
+import { useFormState } from '../hooks/useFormState';
+import { HOME_PAGE } from '../routes';
+
+import PostFooter from './PostFooter';
 
 const PostCreate: React.FunctionComponent = () => {
   const { createPost } = useActions();
   const { users } = useAppState();
-  const navigate = useNavigate();
 
   const initialState = {
     userId: '',
@@ -15,13 +19,11 @@ const PostCreate: React.FunctionComponent = () => {
     body: '',
   };
 
-  const [elementState, setElementState] = useState(initialState);
-
-  const { userId, title, body } = elementState;
-
-  const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
+  const { elementState, handleFormSubmit, handleOnChange, reset, navigate } =
+    useFormState(initialState, onFormSubmit);
+  const { userId, title, body } = elementState!;
+ 
+  function onFormSubmit() {
     let postInputs = {
       userId,
       title,
@@ -29,101 +31,53 @@ const PostCreate: React.FunctionComponent = () => {
     };
 
     createPost(postInputs);
-    setElementState(initialState);
-    navigate('/');
-  };
-
-  const handleOnChange = (
-    event:
-      | React.ChangeEvent<HTMLInputElement>
-      | React.ChangeEvent<HTMLTextAreaElement>
-      | React.ChangeEvent<HTMLSelectElement>
-  ) => {
-    const { name, value } = event.target;
-
-    setElementState((prevElementState) => ({
-      ...prevElementState,
-      [name]: value,
-    }));
-  };
-
-  const renderUsersOptionList = () => {
-    return users.map((user) => {
-      return (
-        <React.Fragment key={user.id}>
-          <option value={user.id}>{user.name}</option>
-        </React.Fragment>
-      );
-    });
-  };
-
-  const renderCreatePostForm = () => {
-    return (
-      <>
-        {/* { MAIN POST Frame } */}
-        <div className="mx-auto rounded-lg  border border-mgLight-secondary/20 bg-mgLight-primary px-1 pt-1 shadow shadow-mgLight-secondary ">
-          <div className="rounded-lg bg-mgLight-base-100 py-4 px-6">
-            <form
-              onSubmit={handleFormSubmit}
-              className="flex flex-col space-y-4"
-            >
-              <input
-                name="title"
-                value={title}
-                onChange={handleOnChange}
-                className="block w-full rounded-lg border-2 border-mgLight-secondary bg-mgLight-secondary/20 p-2.5 text-lg text-mgLight-neutral shadow-sm shadow-mgLight-warning outline-none focus:border-mgLight-primary focus:ring-mgLight-secondary"
-                placeholder="Please Enter Post Title"
-                required
-              />
-
-              <textarea
-                name="body"
-                value={body}
-                onChange={handleOnChange}
-                rows={4}
-                className="block w-full rounded-lg border-2 border-mgLight-secondary bg-mgLight-secondary/20 
-                p-2.5 text-lg text-mgLight-neutral shadow-sm shadow-mgLight-warning outline-none focus:border-mgLight-primary focus:ring-mgLight-secondary"
-                placeholder="Please Enter Post Content"
-                required
-              ></textarea>
-
-              <select
-                name="userId"
-                value={userId}
-                onChange={handleOnChange}
-                id="author"
-                className="block w-full rounded-lg border-2 border-mgLight-secondary bg-mgLight-secondary/20 p-2.5 text-lg text-mgLight-neutral shadow-sm shadow-mgLight-warning outline-none focus:border-mgLight-primary focus:ring-mgLight-secondary
-                "
-              >
-                <option value="" className="text-mgLight-error">
-                  {' '}
-                  Please choose author{' '}
-                </option>
-                {renderUsersOptionList()}
-              </select>
-
-              <button className="rounded-lg bg-mgLight-accent px-5 py-2.5 text-center text-lg font-bold text-white shadow-md shadow-mgLight-success hover:bg-mgLight-success hover:shadow-mgLight-accent  focus:outline-none">
-                ADD NEW POST
-              </button>
-            </form>
-          </div>
-
-          {/* { *** CARD-FOOTER *** } */}
-          <div className="flex items-center justify-between rounded-bl-lg rounded-br-lg bg-mgLight-primary py-3 px-6">
-            <div className="flex items-center space-x-1">
-              {' '}
-              {/* { reaction-feature-placeholder } */}
-            </div>
-          </div>
-        </div>
-      </>
-    );
-  };
+    reset();
+    navigate(HOME_PAGE);
+  }
 
   return (
     <>
-      {/* <h2>ADD NEW POST</h2> */}
-      {renderCreatePostForm()}
+      <Card
+        frameFooterRenderComponent={<PostFooter type={'none'} />}
+        headerStatus={false}
+        subHeaderStatus={false}
+      >
+        <form onSubmit={handleFormSubmit} className="flex flex-col space-y-4">
+          <InputField
+            inputFieldType={'text'}
+            inputFieldName={'title'}
+            inputFieldValue={title}
+            onInputChange={handleOnChange}
+            inputFieldStyle={'secondary'}
+            inputFieldPlaceholder={'Please Enter Post Title'}
+            inputFieldRequired={true}
+          />
+
+          <Textarea
+            textareaName={'body'}
+            textareaValue={body}
+            onChange={handleOnChange}
+            textareaStyle={'secondary'}
+            textareaPlaceholder={'Please Enter Post Content'}
+            textareaRequired={true}
+            textareaRows={4}
+          />
+
+          <SelectField
+            selectFieldName="userId"
+            selectFieldValue={userId}
+            onChange={handleOnChange}
+            selectFieldCssId="author"
+            selectFieldStyle={'secondary'}
+            selectOptionsList={users}
+            selectFieldPlaceholder={'Please choose author'}
+          />
+
+          <button className="rounded-lg bg-mgLight-accent px-5 py-2.5 text-center text-lg font-bold text-white shadow-md shadow-mgLight-success hover:bg-mgLight-success hover:shadow-mgLight-accent  focus:outline-none">
+            ADD NEW POST
+          </button>
+        </form>
+      </Card>
     </>
   );
 };
