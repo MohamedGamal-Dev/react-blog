@@ -3,8 +3,8 @@ import { Dispatch } from 'redux';
 
 import { UsersActionType, UsersActions } from '..';
 
-const baseUsersURL = 'http://localhost:3004/users';
-// const baseUsersURL = 'https://jsonplaceholder.typicode.com/users';
+// const baseUsersURL = 'http://localhost:3004/users';
+const baseUsersURL = 'https://jsonplaceholder.typicode.com/users';
 
 export const fetchUsers = () => {
   return async (dispatch: Dispatch<UsersActions>) => {

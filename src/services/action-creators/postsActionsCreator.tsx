@@ -15,10 +15,11 @@ import {
 
 // Fetching Data from db API
 // local-server
-let basePostsURL = 'http://localhost:3004/posts';
+// let basePostsURL = 'http://localhost:3004/posts';
 // Live-server
-// let basePostsURL = 'https://jsonplaceholder.typicode.com/posts';
+let basePostsURL = 'https://jsonplaceholder.typicode.com/posts';
 
+// jsonPlaceHolder API Variant
 export const fetchPosts = () => {
   return async (dispatch: Dispatch<PostsActions>) => {
     dispatch({
@@ -26,22 +27,45 @@ export const fetchPosts = () => {
     });
 
     try {
-      const response = await axios.get(basePostsURL);
-
+      const response = await axios.get(`${basePostsURL}`);
+      // console.log(response);
+      let data = response.data.map((post: PostType) => {
+        return { ...post, date: formatISO(new Date()) };
+      });
       dispatch({
         type: PostsActionType.FETCH_POSTS_SUCCESS,
-        payload: response.data,
+        payload: data,
       });
-    } catch (err) {
-      if (err instanceof Error) {
-        dispatch({
-          type: PostsActionType.FETCH_POSTS_ERROR,
-          payload: err.message,
-        });
-      }
+    } catch (err: any) {
+      dispatch({
+        type: PostsActionType.FETCH_POSTS_ERROR,
+        payload: err.message,
+      });
     }
   };
 };
+
+// export const fetchPosts = () => {
+//   return async (dispatch: Dispatch<PostsActions>) => {
+//     dispatch({
+//       type: PostsActionType.FETCH_POSTS,
+//     });
+
+//     try {
+//       const response = await axios.get(basePostsURL);
+
+//       dispatch({
+//         type: PostsActionType.FETCH_POSTS_SUCCESS,
+//         payload: response.data,
+//       });
+//     } catch (err: any) {
+//       dispatch({
+//         type: PostsActionType.FETCH_POSTS_ERROR,
+//         payload: err.message,
+//       });
+//     }
+//   };
+// };
 
 // Create New Post
 export const createPost = (postInputs: CreatePostType) => {
@@ -55,7 +79,7 @@ export const createPost = (postInputs: CreatePostType) => {
       body,
       date: formatISO(new Date()),
     };
-
+    console.log(newPost);
     const { data } = await axios.post(basePostsURL, newPost);
     dispatch({
       type: CreatePostActionType.CREATE_POST,

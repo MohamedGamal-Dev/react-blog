@@ -9,16 +9,33 @@ export const useAppState = () => {
     shallowEqual
   );
 
+  // const getPostById = (postId: string): PostType => {
+  //   let post = posts.find((post) => {
+  //     return post.id === postId;
+  //   });
+  //   return post!;
+  // };
+
+  // const getUserById = (userId: string) => {
+  //   let user = users.find((user) => {
+  //     return user.id === userId;
+  //   });
+  //   return user!;
+  // };
+
+  // ----------------------------
+  // jsonPlaceHolder API Variant
+  // ----------------------------
   const getPostById = (postId: string): PostType => {
     let post = posts.find((post) => {
-      return post.id === postId;
+      return String(post.id) === String(postId);
     });
     return post!;
   };
 
   const getUserById = (userId: string) => {
     let user = users.find((user) => {
-      return user.id === userId;
+      return String(user.id) === String(userId);
     });
     return user!;
   };
