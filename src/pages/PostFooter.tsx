@@ -2,9 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { POST_BY_ID_PROP } from '../routes';
 import { PostFooterProps } from '../services';
+import PostReactions from './PostReactions';
 import PostRender from './PostRender';
 
 const PostFooter: React.FunctionComponent<PostFooterProps> = ({
+  post,
   type = 'single',
   id,
 }) => {
@@ -19,7 +21,9 @@ const PostFooter: React.FunctionComponent<PostFooterProps> = ({
       case 'list':
         return (
           <>
-            <div className="flex items-center space-x-1"> </div>
+            <div className="flex items-center space-x-1">
+              <PostReactions post={post!} />
+            </div>
             <button onClick={handlePostRender}>
               <Link
                 to={POST_BY_ID_PROP(id)}
@@ -34,7 +38,9 @@ const PostFooter: React.FunctionComponent<PostFooterProps> = ({
       case 'single':
         return (
           <>
-            <div className="flex items-center space-x-1"> </div>
+            <div className="flex items-center space-x-1">
+              <PostReactions post={post!} />
+            </div>
           </>
         );
 

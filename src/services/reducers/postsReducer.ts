@@ -1,11 +1,12 @@
 import {
-  PostType,
+  // PostType,
   PostsState,
   PostsActions,
   PostsActionType,
   CreatePostActionType,
   DeletePostActionType,
   EditPostActionType,
+  ReactionCountActionType,
 } from '../../services';
 
 const initialState: PostsState = { posts: [], loading: false, error: null };
@@ -43,6 +44,23 @@ const postsReducer = (
         ...state,
         posts: state.posts.map((post) => {
           return post.id === action.payload.id ? action.payload : post;
+        }),
+      };
+
+    case ReactionCountActionType.REACTION_COUNT:
+      return {
+        ...state,
+        posts: state.posts.map((post) => {
+          return post.id === action.payload.id
+            ? {
+                ...post,
+                reactions: {
+                  ...post.reactions,
+                  [action.payload.reaction]:
+                    post.reactions![action.payload.reaction] + 1,
+                },
+              }
+            : post;
         }),
       };
 

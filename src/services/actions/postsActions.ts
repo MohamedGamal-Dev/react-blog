@@ -4,6 +4,7 @@ import {
   DeletePostActionType,
   EditPostActionType,
   PostType,
+  ReactionCountActionType,
 } from '../../services';
 
 interface FetchPostsAction {
@@ -33,10 +34,19 @@ interface EditPostAction {
   payload: PostType;
 }
 
+interface ReactionCountAction {
+  type: ReactionCountActionType.REACTION_COUNT;
+  payload: {
+    id: string;
+    reaction: string;
+  };
+}
+
 export type PostsActions =
   | FetchPostsAction
   | FetchPostsSuccessAction
   | FetchPostsErrorAction
   | CreatePostAction
   | DeletePostAction
-  | EditPostAction;
+  | EditPostAction
+  | ReactionCountAction;

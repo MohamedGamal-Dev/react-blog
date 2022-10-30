@@ -15,3 +15,7 @@ export enum DeletePostActionType {
 export enum EditPostActionType {
   EDIT_POST = 'edit_post',
 }
+
+export enum ReactionCountActionType {
+  REACTION_COUNT = 'reaction_count',
+}

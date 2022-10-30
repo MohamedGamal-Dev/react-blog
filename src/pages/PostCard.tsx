@@ -17,7 +17,9 @@ const PostCard: React.FunctionComponent<PostProps> = ({ post }) => {
   return (
     <>
       <Card
-        frameFooterRenderComponent={<PostFooter id={id} type={'list'} />}
+        frameFooterRenderComponent={
+          <PostFooter id={id} type={'list'} post={post} />
+        }
         authorRender={<PostAuthor userId={userId} />}
         dateRender={<PostDate timestamp={date!} />}
         onDeleteClick={handleDeleteClick}

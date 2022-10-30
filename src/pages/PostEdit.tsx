@@ -19,28 +19,24 @@ const PostEdit: React.FunctionComponent = () => {
   const post = getPostById(postId!);
 
   const initialState = {
-    userId: post.userId,
-    id: post.id,
     title: post.title,
     body: post.body,
-    date: post.date,
   };
 
-  const { elementState, handleFormSubmit, handleOnChange, reset, navigate } =
+  const { elementState, handleFormSubmit, handleOnChange, navigate } =
     useFormState(initialState, onFormSubmit);
-  const { userId, id, title, body, date } = elementState!;
+  const { title, body } = elementState!;
+  const { userId, id, date } = post;
 
   function onFormSubmit() {
-    const editedPost: PostType = { userId, id, title, body, date };
-
-    editPost(editedPost);
+    editPost(post, title, body);
     navigate(POST_BY_ID_PROP(id));
   }
 
   return (
     <>
       <Card
-        frameFooterRenderComponent={<PostFooter type={'none'} />}
+        frameFooterRenderComponent={<PostFooter type={'none'} post={post} />}
         headerStatus={false}
         subHeaderStatus={false}
       >

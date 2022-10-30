@@ -11,6 +11,7 @@ import {
   CreatePostActionType,
   DeletePostActionType,
   EditPostActionType,
+  ReactionCountActionType,
 } from '../../services';
 
 // Fetching Data from db API
@@ -29,7 +30,14 @@ export const fetchPosts = () => {
     try {
       const response = await axios.get(`${basePostsURL}/?_limit=5`);
       let data = response.data.map((post: PostType) => {
-        return { ...post, date: formatISO(new Date()) };
+        return {
+          ...post,
+          date: post.date || formatISO(new Date()),
+          reactions: {
+            thumbsUp: post.reactions?.thumbsUp || 0,
+            thumbsDown: post.reactions?.thumbsDown || 0,
+          },
+        };
       });
       dispatch({
         type: PostsActionType.FETCH_POSTS_SUCCESS,
@@ -44,6 +52,7 @@ export const fetchPosts = () => {
   };
 };
 
+// local FAKE API Variant
 // export const fetchPosts = () => {
 //   return async (dispatch: Dispatch<PostsActions>) => {
 //     dispatch({
@@ -77,6 +86,10 @@ export const createPost = (postInputs: CreatePostType) => {
       title,
       body,
       date: formatISO(new Date()),
+      reactions: {
+        thumbsUp: 0,
+        thumbsDown: 0,
+      },
     };
     const { data } = await axios.post(basePostsURL, newPost);
     dispatch({
@@ -98,7 +111,16 @@ export const deletePost = (id: string) => {
 };
 
 // EDIT Post
-export const editPost = (editedPost: PostType) => {
+export const editPost = (
+  post: PostType,
+  updatedTitle: string,
+  updatedBody: string
+) => {
+  let editedPost: PostType = {
+    ...post,
+    title: updatedTitle,
+    body: updatedBody,
+  };
   return async (dispatch: Dispatch<PostsActions>) => {
     const { data } = await axios.put(
       `${basePostsURL}/${editedPost.id}`,
@@ -109,5 +131,12 @@ export const editPost = (editedPost: PostType) => {
       type: EditPostActionType.EDIT_POST,
       payload: data,
     });
+  };
+};
+
+export const reactionCount = (id: string, reaction: string) => {
+  return {
+    type: ReactionCountActionType.REACTION_COUNT,
+    payload: { id, reaction },
   };
 };

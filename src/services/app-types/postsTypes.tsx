@@ -10,6 +10,9 @@ export interface PostType {
   title: string;
   body: string;
   date: string;
+  reactions?: {
+    [reaction: string]: number;
+  };
 }
 
 export interface CreatePostType {
@@ -30,6 +33,7 @@ export interface PostDateProps {
   children?: React.ReactNode;
 }
 export interface PostFooterProps {
+  post?: PostType;
   type?: string;
   id?: string;
 }

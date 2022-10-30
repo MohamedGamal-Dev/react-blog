@@ -27,7 +27,7 @@ const PostRender: React.FunctionComponent = () => {
   return (
     <>
       <Card
-        frameFooterRenderComponent={<PostFooter type={'single'} />}
+        frameFooterRenderComponent={<PostFooter type={'single'} post={post} />}
         authorRender={<PostAuthor userId={userId} />}
         dateRender={<PostDate timestamp={date!} />}
         onDeleteClick={handleDeleteClick}
