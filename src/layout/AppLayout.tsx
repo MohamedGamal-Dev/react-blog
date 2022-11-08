@@ -9,7 +9,7 @@ const AppLayout = () => {
       <HeaderContainer />
 
       {/* {===-> MAIN-BODY <-===} */}
-      <div className="bg-gradient-to-b from-mgLight-base-100 to-white py-8 px-4 md:py-10 md:px-0">
+      <div className="bg-gradient-to-b from-mgLight-base-100 to-white">
         <MainBody />
       </div>
       {/* {===-> FOOTER <-===} */}

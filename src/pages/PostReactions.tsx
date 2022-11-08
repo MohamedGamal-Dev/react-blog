@@ -9,9 +9,9 @@ const PostReactions: React.FunctionComponent<PostProps> = ({ post }) => {
   const { reactions, id } = post!;
   const { reactionCount } = useActions();
 
-  const handleClick = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {};
+  // const handleClick = (
+  //   event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  // ) => {};
 
   let iconStyle =
     'text-md items-center py-0 pr-0 text-center text-mgLight-accent text-inherit focus:outline-none';
