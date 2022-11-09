@@ -9,9 +9,17 @@ import {
   FaRedditAlien,
 } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { useAppState } from '../hooks/useAppState';
+import { useGetRandomItems } from '../hooks/useGetRandomItems';
+import { POST_BY_ID_PROP } from '../routes';
 import { heroCTA } from './consts';
+import MainSidebarNewsLetter from './MainSidebarNewsLetter';
 
 const MainSidebar: React.FunctionComponent = () => {
+  const { posts } = useAppState();
+  const featurePosts = useGetRandomItems(posts, 4);
+  const randomPosts = useGetRandomItems(posts, 4);
+
   let socialMediaList = [
     { name: 'faceBook', icon: <FaFacebookF /> },
     { name: 'instagram', icon: <FaInstagram /> },
@@ -38,9 +46,9 @@ const MainSidebar: React.FunctionComponent = () => {
   };
 
   return (
-    <>
+    <section className="mb-2 flex flex-col space-y-3">
       {/* {===->> MAIN-SIDEBAR <<-===} */}
-      <div className="flex flex-col items-center justify-center bg-mgLight-neutral mb-2">
+      <div className="flex flex-col items-center justify-center bg-mgLight-neutral">
         <div className="flex flex-row flex-wrap items-baseline justify-center space-x-2 space-y-2 px-2 py-4 lg:flex-nowrap">
           {renderSocialMedia()}
         </div>
@@ -55,7 +63,49 @@ const MainSidebar: React.FunctionComponent = () => {
           </Link>
         </button>
       </div>
-    </>
+
+      <div className="flex flex-col bg-mgLight-warning/10 p-4">
+        <h3 className="w-full border-b-2 border-b-mgLight-secondary pb-1 text-lg font-medium">
+          Feature Posts
+        </h3>
+        <ul className="pt-4">
+          {featurePosts.map((post) => {
+            return (
+              <li
+                key={post.id}
+                className=" text-base  font-light text-mgLight-neutral hover:font-normal hover:text-mgLight-primary"
+              >
+                <Link to={POST_BY_ID_PROP(post.id)}>
+                  {`-`} {post.title}
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+
+      <div className="flex flex-col bg-mgLight-warning/10 p-4">
+        <h3 className="w-full border-b-2 border-b-mgLight-secondary pb-1 text-lg font-medium">
+          Random Posts
+        </h3>
+        <ul className="pt-4">
+          {randomPosts.map((post) => {
+            return (
+              <li
+                key={post.id}
+                className=" text-base  font-light text-mgLight-neutral hover:font-normal hover:text-mgLight-primary"
+              >
+                <Link to={POST_BY_ID_PROP(post.id)}>
+                  {`-`} {post.title}
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+
+      {<MainSidebarNewsLetter />}
+    </section>
   );
 };
 

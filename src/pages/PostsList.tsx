@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useAppState } from '../hooks/useAppState';
 
 import { PostType } from '../services';
