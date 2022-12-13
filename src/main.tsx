@@ -8,21 +8,23 @@ import { persistor, store } from './services';
 import App from './App';
 import './styles/index.css';
 
-import { ThunkDispatch } from 'redux-thunk';
-import {
-  PostsActions,
-  PostsState,
-  actionCreators,
-  UsersState,
-  UsersActions,
-} from './services/';
+//  #### DEV PURPOSE ONLY...... ####
+// import { ThunkDispatch } from 'redux-thunk';
+// import {
+//   PostsActions,
+//   PostsState,
+//   actionCreators,
+//   UsersState,
+//   UsersActions,
+// } from './services/';
 
-(store.dispatch as ThunkDispatch<PostsState, unknown, PostsActions>)(
-  actionCreators.fetchPosts()
-);
-(store.dispatch as ThunkDispatch<UsersState, unknown, UsersActions>)(
-  actionCreators.fetchUsers()
-);
+// (store.dispatch as ThunkDispatch<PostsState, unknown, PostsActions>)(
+//   actionCreators.fetchPosts()
+// );
+// (store.dispatch as ThunkDispatch<UsersState, unknown, UsersActions>)(
+//   actionCreators.fetchUsers()
+// );
+//  #### DEV PURPOSE ONLY...... ####
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
