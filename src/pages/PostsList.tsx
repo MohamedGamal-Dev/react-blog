@@ -3,6 +3,7 @@ import { useAppState } from '../hooks/useAppState';
 
 import { PostType } from '../services';
 import PostCard from './PostCard';
+import Loader from '../components/ui/Loader';
 
 const PostsList: React.FunctionComponent = () => {
   const { posts, postsLoading, postsError } = useAppState();
@@ -44,7 +45,7 @@ const PostsList: React.FunctionComponent = () => {
   return (
     <>
       <div className="flex-1 flex-col space-y-4">
-        {postsLoading && <h4>postsLoading...</h4>}
+        {postsLoading && <Loader/>}
         {postsError && <p>Error: {postsError}</p>}
         {/* {renderPostsList()} */}
         <>{renderLoopPostsList(posts)}</>

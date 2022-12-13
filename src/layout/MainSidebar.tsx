@@ -14,9 +14,10 @@ import { useGetRandomItems } from '../hooks/useGetRandomItems';
 import { POST_BY_ID_PROP } from '../routes';
 import { heroCTA } from './consts';
 import MainSidebarNewsLetter from './MainSidebarNewsLetter';
+import Loader from '../components/ui/Loader';
 
 const MainSidebar: React.FunctionComponent = () => {
-  const { posts } = useAppState();
+  const { posts, postsLoading, postsError } = useAppState();
   const featurePosts = useGetRandomItems(posts, 4);
   const randomPosts = useGetRandomItems(posts, 4);
 
@@ -69,6 +70,8 @@ const MainSidebar: React.FunctionComponent = () => {
           Feature Posts
         </h3>
         <ul className="pt-4">
+          {postsLoading && <Loader />}
+          {postsError && null}
           {featurePosts.map((post) => {
             return (
               <li
@@ -89,6 +92,8 @@ const MainSidebar: React.FunctionComponent = () => {
           Random Posts
         </h3>
         <ul className="pt-4">
+          {postsLoading && <Loader />}
+          {postsError && null}
           {randomPosts.map((post) => {
             return (
               <li
